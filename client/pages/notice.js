@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import AppLayout from "../components/AppLayout";
-import App from "./_app";
+
 const Notice = () => {
   return (
     <>

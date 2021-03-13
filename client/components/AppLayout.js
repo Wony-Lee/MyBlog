@@ -3,8 +3,6 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 import { injectGlobal } from "@emotion/css";
 
-import BodyBanner from "../components/bodyBanner";
-
 injectGlobal`
 body{
     margin:0 auto;
@@ -49,15 +47,6 @@ const BodyLayout = styled.div`
   min-height: 300px;
 `;
 
-const BodyBox = styled.div`
-  margin-top: 40px;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
-  display: flex;
-  flex-direction: row;
-`;
-
 const AppLayout = ({ children }) => {
   return (
     <>
@@ -73,13 +62,19 @@ const AppLayout = ({ children }) => {
               <a>공지사항</a>
             </Link>
           </MenuItem>
-          <MenuItem>전시</MenuItem>
-          <MenuItem>방명록</MenuItem>
+          <MenuItem>
+            <Link href="/display">
+              <a>전시</a>
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href="/guestBook">
+              <a>방명록</a>
+            </Link>
+          </MenuItem>
         </RightMenu>
       </MenuBar>
-      <BodyLayout>
-        <BodyBox>{children}</BodyBox>
-      </BodyLayout>
+      <BodyLayout>{children}</BodyLayout>
       <div>footer</div>
     </>
   );
