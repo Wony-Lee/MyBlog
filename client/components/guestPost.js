@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "@emotion/styled";
 
 const PostBox = styled.form`
@@ -61,7 +61,16 @@ const BtnReset = styled.button`
 
 const GuestPost = () => {
   const [Text, setText] = useState("");
-  const onChangeText = useCallback((e) => {}, [setText]);
+  const onChangeText = useCallback(
+    (e) => {
+      setText(e.target.value);
+      console.log(setText);
+    },
+    [setText]
+  );
+  console.log(setText);
+  console.log(Text);
+
   return (
     <>
       <PostBox>
