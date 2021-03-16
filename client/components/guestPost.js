@@ -63,16 +63,21 @@ const GuestPost = () => {
   const onChangeText = useCallback(
     (e) => {
       setText(e.target.value);
-      console.log(setText);
     },
     [setText]
   );
-  console.log(setText);
-  console.log(Text);
+
+  const submitHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      console.log(e);
+    },
+    [Text]
+  );
 
   return (
     <>
-      <PostForm>
+      <PostForm onSubmit={submitHandler}>
         <PostItem>
           <PostUser>
             <span>Name</span>
@@ -86,7 +91,7 @@ const GuestPost = () => {
             onChange={onChangeText}
           ></PostContentText>
           <BtnBox>
-            <BtnSuccess>작성</BtnSuccess>
+            <BtnSuccess type="submit">작성</BtnSuccess>
             <BtnReset>취소</BtnReset>
           </BtnBox>
         </PostContent>
