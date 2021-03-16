@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import styled from "@emotion/styled";
 
-const PostBox = styled.form`
+const PostForm = styled.form`
   width: 50%;
   border: 1px solid #ddd;
 `;
@@ -58,7 +58,6 @@ const BtnReset = styled.button`
   outline: none;
   cursor: pointer;
 `;
-
 const GuestPost = () => {
   const [Text, setText] = useState("");
   const onChangeText = useCallback(
@@ -73,7 +72,7 @@ const GuestPost = () => {
 
   return (
     <>
-      <PostBox>
+      <PostForm>
         <PostItem>
           <PostUser>
             <span>Name</span>
@@ -91,7 +90,7 @@ const GuestPost = () => {
             <BtnReset>취소</BtnReset>
           </BtnBox>
         </PostContent>
-      </PostBox>
+      </PostForm>
     </>
   );
 };
