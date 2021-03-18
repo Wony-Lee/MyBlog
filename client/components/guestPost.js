@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import styled from "@emotion/styled";
+import useInput from "../hooks";
 
 const PostForm = styled.form`
   width: 50%;
@@ -59,13 +60,7 @@ const BtnReset = styled.button`
   cursor: pointer;
 `;
 const GuestPost = () => {
-  const [Text, setText] = useState("");
-  const onChangeText = useCallback(
-    (e) => {
-      setText(e.target.value);
-    },
-    [setText]
-  );
+  const [Text, onChangeText] = useInput("");
 
   const submitHandler = useCallback(
     (e) => {
