@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import styled from "@emotion/styled";
-import useInput from "../hooks";
+import useInput from "../hooks/useInput";
 
 const PostForm = styled.form`
   width: 50%;

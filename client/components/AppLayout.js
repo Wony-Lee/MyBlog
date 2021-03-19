@@ -14,8 +14,7 @@ const MenuBar = styled.div`
   margin-left: 5%;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-  height: 75px;
+  height: 40px;
   align-items: center;
 `;
 const LeftMenu = styled.div`
@@ -23,7 +22,7 @@ const LeftMenu = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-start;
-  border: 1px solid black;
+
   align-items: center;
 `;
 const RightMenu = styled.div`
@@ -31,7 +30,7 @@ const RightMenu = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
-  border: 1px solid red;
+
   align-items: center;
 `;
 const MenuItem = styled.div`
@@ -40,11 +39,7 @@ const MenuItem = styled.div`
 
 const BodyLayout = styled.div`
   width: 100%;
-  border: 1px solid navy;
-  height: 650px;
   background: gray;
-  overflow: auto;
-  min-height: 300px;
 `;
 
 const AppLayout = ({ children }) => {
