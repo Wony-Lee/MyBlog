@@ -1,6 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
+import { injectGlobal } from "@emotion/css";
+
+injectGlobal`
+body{
+    margin:0 auto;
+    width:100%;
+}`;
 
 const Layout = styled.div`
   display: flex;
@@ -73,6 +80,7 @@ const CenterText = styled.div`
   align-items: center;
   color: white;
   font-size: 50pt;
+  user-select: none;
 `;
 
 const Alink = styled.a`
@@ -90,7 +98,7 @@ const FirstPage = () => {
           </LeftMenu>
         </LeftLayout>
         <CenterText>
-          <span>
+          <span alt="도끼를 갈아 바늘을 만든다">
             磨<br />斧<br />爲<br />針<br />
           </span>
         </CenterText>
