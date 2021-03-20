@@ -10,20 +10,22 @@ injectGlobal`
 body{
     margin:0 auto;
     width:100%;
-}`;
+    background:#191940;
+    
+  }`;
 
 const NavForm = styled.div`
-  margin: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #6a5acd;
 `;
 
 const NavText = styled.span`
   font-size: 15pt;
   color: white;
+  margin-left: 30px;
 `;
 const NavAtag = styled.a`
   color: wthie;
@@ -32,41 +34,40 @@ const NavAtag = styled.a`
 
 const ContentLayout = styled.div`
   display: flex;
+  justify-content: center;
+`;
+
+const ContentLeft = styled.div`
+  display: flex;
+  width: 40%;
+  margin-bottom: 5%;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 790px;
-  background: #483d8b;
+  align-items: flex-end;
+  background: #191960;
+`;
+const ContentRight = styled.div`
+  display: flex;
+  width: 40%;
+  margin-top: 5%;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #191970;
 `;
 
-const ContentTop = styled.div`
+const ContentItem = styled.div`
+  border: 2px solid white;
   display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+  color: white;
 `;
-const ContentBot = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-`;
-const LeftContent = styled.div`
-  margin-right: 30px;
-  border: 1px solid black;
-  width: 50%;
-  text-align: right;
-  width: 200px;
-  height: 200px;
-`;
-const RightContent = styled.div`
+
+const EtcText = styled.div`
+  color: white;
   margin-left: 30px;
-  border: 1px solid black;
-  width: 50%;
-  text-align: left;
-  width: 200px;
-  height: 200px;
+  font-size: 15pt;
 `;
-
-const EtcText = styled.div``;
 
 const AppLayout = ({ children }) => {
   return (
@@ -79,16 +80,18 @@ const AppLayout = ({ children }) => {
         </Link>
       </NavForm>
       <ContentLayout>
-        <ContentTop>
-          <LeftContent>소개</LeftContent>
-          <RightContent>포트폴리오</RightContent>
-        </ContentTop>
-        <ContentBot>
-          <LeftContent>일상</LeftContent>
-          <RightContent>방명록</RightContent>
-        </ContentBot>
+        <div>asd</div>
+        <ContentLeft>
+          <ContentItem>소개</ContentItem>
+          <ContentItem>포트폴리오</ContentItem>
+        </ContentLeft>
+        <ContentRight>
+          <ContentItem>일상</ContentItem>
+          <ContentItem>방명록</ContentItem>
+        </ContentRight>
+        <div>asd</div>
       </ContentLayout>
-      <div>asdasd</div>
+      <EtcText>내용추가</EtcText>
     </>
   );
 };
