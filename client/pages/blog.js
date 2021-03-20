@@ -1,10 +1,13 @@
 import React from "react";
 import AppLayout from "../components/AppLayout";
+import BlogContent from "../components/blogContent";
 
 const blog = () => {
   return (
     <>
-      <AppLayout>asd</AppLayout>
+      <AppLayout>
+        <BlogContent />
+      </AppLayout>
     </>
   );
 };

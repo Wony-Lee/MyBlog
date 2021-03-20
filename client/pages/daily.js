@@ -1,13 +1,14 @@
 import React from "react";
 import AppLayout from "../components/AppLayout";
-const Display = () => {
+
+const Daily = () => {
   return (
     <>
       <AppLayout>
-        <div>전시</div>
+        <div>일상</div>
       </AppLayout>
     </>
   );
 };
 
-export default Display;
+export default Daily;
