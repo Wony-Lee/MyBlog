@@ -1,9 +1,13 @@
 import React from "react";
+import AppLayout from "../components/AppLayout";
+import InfoContent from "../components/infoContent";
 
 const Info = () => {
   return (
     <>
-      <div>Information</div>
+      <AppLayout>
+        <InfoContent />
+      </AppLayout>
     </>
   );
 };

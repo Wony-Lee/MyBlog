@@ -6,11 +6,11 @@ import styled from "@emotion/styled";
 import { injectGlobal } from "@emotion/css";
 
 injectGlobal`
-
 body{
     margin:0 auto;
     width:100%;
     background:#191940;
+    user-select:none;
   }`;
 
 const NavForm = styled.div`
@@ -22,11 +22,24 @@ const NavForm = styled.div`
   align-items: center;
 `;
 
+const NavLeft = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+`;
+const NavRight = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+`;
+
 const NavText = styled.span`
   font-size: 15pt;
   color: white;
   margin-left: 30px;
+  margin-right: 30px;
 `;
+
 const NavAtag = styled.a`
   color: wthie;
   cursor: pointer;
@@ -63,11 +76,20 @@ const AppLayout = ({ children }) => {
   return (
     <>
       <NavForm>
-        <Link href="/">
-          <NavAtag>
-            <NavText>Wony</NavText>
-          </NavAtag>
-        </Link>
+        <NavLeft>
+          <Link href="/">
+            <NavAtag>
+              <NavText>Wony</NavText>
+            </NavAtag>
+          </Link>
+        </NavLeft>
+        <NavRight>
+          <Link href="/blog">
+            <NavAtag>
+              <NavText>blog</NavText>
+            </NavAtag>
+          </Link>
+        </NavRight>
       </NavForm>
       <ContentLayout>
         <VoidDiv>asd</VoidDiv>
