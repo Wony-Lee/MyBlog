@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import PostForm from "./PostForm";
 
 const GuestLayout = styled.div`
   width: 100%;
@@ -12,7 +13,7 @@ const GuestContent = () => {
   return (
     <>
       <GuestLayout>
-        <div>방명록 컨텐츠</div>
+        <PostForm />
       </GuestLayout>
     </>
   );

@@ -11,7 +11,14 @@ body{
     width:100%;
     background:#191940;
     user-select:none;
-  }`;
+  }
+button{
+  outline:none;
+  cursor:pointer;
+  border:0px;
+  background:white;
+}
+  `;
 
 const NavForm = styled.div`
   margin-top: 30px;
