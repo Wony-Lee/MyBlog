@@ -2,6 +2,11 @@ import React from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 
+const BlogLayout = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const ContentLeft = styled.div`
   display: flex;
   width: 40%;
@@ -31,30 +36,32 @@ const ContentItem = styled.div`
 const BodyContent = () => {
   return (
     <>
-      <ContentLeft>
-        <ContentItem>
-          <Link href="/info">
-            <a>소개</a>
-          </Link>
-        </ContentItem>
-        <ContentItem>
-          <Link href="/portfolio">
-            <a>포트폴리오</a>
-          </Link>
-        </ContentItem>
-      </ContentLeft>
-      <ContentRight>
-        <ContentItem>
-          <Link href="/daily">
-            <a>일상</a>
-          </Link>
-        </ContentItem>
-        <ContentItem>
-          <Link href="/guest">
-            <a>방명록</a>
-          </Link>
-        </ContentItem>
-      </ContentRight>
+      <BlogLayout>
+        <ContentLeft>
+          <ContentItem>
+            <Link href="/info">
+              <a>소개</a>
+            </Link>
+          </ContentItem>
+          <ContentItem>
+            <Link href="/portfolio">
+              <a>포트폴리오</a>
+            </Link>
+          </ContentItem>
+        </ContentLeft>
+        <ContentRight>
+          <ContentItem>
+            <Link href="/daily">
+              <a>일상</a>
+            </Link>
+          </ContentItem>
+          <ContentItem>
+            <Link href="/guest">
+              <a>방명록</a>
+            </Link>
+          </ContentItem>
+        </ContentRight>
+      </BlogLayout>
     </>
   );
 };

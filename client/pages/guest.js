@@ -1,12 +1,14 @@
 import React from "react";
 import AppLayout from "../components/AppLayout";
-import GuestContent from "../components/guestContent";
+import PostCard from "../components/PostCard";
+import PostForm from "../components/PostForm";
 
 const Guest = () => {
   return (
     <>
       <AppLayout>
-        <GuestContent />
+        <PostForm />
+        <PostCard />
       </AppLayout>
     </>
   );

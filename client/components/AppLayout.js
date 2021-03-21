@@ -17,6 +17,8 @@ button{
   cursor:pointer;
   border:0px;
   background:white;
+  height: 30px;
+  width: 100px;
 }
   `;
 
@@ -60,6 +62,11 @@ const ContentLayout = styled.div`
   overflow: hidden;
 `;
 
+const PageContents = styled.div`
+  flex-direction: column;
+  width: 100%;
+`;
+
 const VoidDiv = styled.div`
   border: 2px solid white;
   width: 10%;
@@ -100,7 +107,7 @@ const AppLayout = ({ children }) => {
       </NavForm>
       <ContentLayout>
         <VoidDiv>asd</VoidDiv>
-        {children}
+        <PageContents>{children}</PageContents>
         <VoidDiv>asd</VoidDiv>
       </ContentLayout>
       <EtcDiv>
