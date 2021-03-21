@@ -60,7 +60,7 @@ const VoidDiv = styled.div`
 
 const EtcDiv = styled.div`
 margin-top:30px;
-  width: 100%;
+  
   border: 2px solid white;
   position: relative
   bottom: 0px;

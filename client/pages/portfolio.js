@@ -1,9 +1,14 @@
 import React from "react";
 
+import AppLayout from "../components/AppLayout";
+import PortFolioContent from "../components/portfolioContent";
+
 const PortFolio = () => {
   return (
     <>
-      <div>포트폴리오</div>
+      <AppLayout>
+        <PortFolioContent />
+      </AppLayout>
     </>
   );
 };
