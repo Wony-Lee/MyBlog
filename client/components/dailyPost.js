@@ -34,7 +34,6 @@ const SubjectInput = styled.input`
 
 const WriteContent = styled.div`
   height: 300px;
-
   padding: 10px;
 `;
 
