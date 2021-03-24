@@ -2,14 +2,12 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const PortPostLayout = styled.div`
-  border: 1px solid white;
   display: flex;
   justify-content: center;
-  background: white;
 `;
 
 const PortPostForm = styled.form`
-  border: 1px solid black;
+  border: 1px solid white;
   width: 50%;
   display: flex;
   justify-content: center;
@@ -27,6 +25,7 @@ const PortSubject = styled.div`
   align-items: center;
   margin-top: 15px;
   margin-bottom: 15px;
+  color: white;
 `;
 
 const PortSpan = styled.span`
@@ -45,6 +44,33 @@ const PortTextLayout = styled.div`
 const PortTextArea = styled.textarea`
   resize: none;
   width: 99%;
+  height: 300px;
+`;
+
+const PortPreviewLayout = styled.div`
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+const PreviewForm = styled.div`
+  border: 1px solid white;
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const PortBtnBox = styled.div`
+  margin-top: 10px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+`;
+
+const WriteBtn = styled.button`
+  margin: 10px;
+  color: white;
 `;
 
 const PortPost = () => {
@@ -60,14 +86,14 @@ const PortPost = () => {
             <PortTextLayout>
               <PortTextArea />
             </PortTextLayout>
-            <div>
-              <div>미리보기</div>
+            <PortPreviewLayout>
+              <PreviewForm>미리보기</PreviewForm>
               <input type="file" />
-            </div>
-            <div>
-              <button>작성</button>
-              <button>취소</button>
-            </div>
+            </PortPreviewLayout>
+            <PortBtnBox>
+              <WriteBtn style={{ color: "navy" }}>작성</WriteBtn>
+              <WriteBtn style={{ color: "red" }}>취소</WriteBtn>
+            </PortBtnBox>
           </PortPostContent>
         </PortPostForm>
       </PortPostLayout>
