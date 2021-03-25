@@ -52,6 +52,7 @@ const PortPreviewLayout = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 10px;
 `;
 const PreviewForm = styled.div`
   border: 1px solid white;

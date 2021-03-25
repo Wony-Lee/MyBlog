@@ -1,7 +1,15 @@
 import { createWrapper } from "next-redux-wrapper";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import reducer from "../reducer/index";
 
-const configureStore = () => {};
+const loggerMiddleware = ({ dispath, getState }) => (next) => (acticon) => {
+  console.log(action);
+  return next(action);
+};
+
+const configureStore = () => {
+  const store = createStore(reducer);
+};
 
 const wrapper = createWrapper(configureStore, {
   debug: process.env.NODE_ENV === "development",
