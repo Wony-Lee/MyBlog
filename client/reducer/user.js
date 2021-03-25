@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       default:
-        break;
+        return state;
     }
   });
 

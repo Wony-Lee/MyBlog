@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-
+import { useDispatch, useSelector } from "react-redux";
 import { injectGlobal } from "@emotion/css";
 
 injectGlobal`
@@ -86,7 +86,12 @@ const EtcText = styled.span`
   font-size: 15pt;
 `;
 
+const GuestText = styled.div`
+  color: white;
+`;
+
 const AppLayout = ({ children }) => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <>
       <NavForm>
@@ -98,6 +103,11 @@ const AppLayout = ({ children }) => {
           </Link>
         </NavLeft>
         <NavRight>
+          {isLoggedIn ? (
+            <GuestText>관리자 로그인중</GuestText>
+          ) : (
+            <GuestText>환영합니다.</GuestText>
+          )}
           <Link href="/blog/dailyWrite">
             <NavAtag>
               <NavText>일상</NavText>
@@ -125,10 +135,6 @@ const AppLayout = ({ children }) => {
       </EtcDiv>
     </>
   );
-};
-
-AppLayout.protoTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default AppLayout;

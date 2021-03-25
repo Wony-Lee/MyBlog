@@ -1,16 +1,61 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
 
-const rootReducer = (state, action) => {
+const initialState = {
+  user: {
+    isLoggedIn: false,
+    user: null,
+    singUpDate: {},
+    loginData: {},
+  },
+};
+
+export const loginAction = (data) => {
+  return {
+    type: "LOG_IN",
+    data,
+  };
+};
+
+export const logoutAction = () => {
+  return {
+    type: "LOG_OUT",
+  };
+};
+
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case HYDRATE:
-      console.log("HYDRATE", action);
-      return action.payload;
-    default: {
-      const combineReducer = combineReducers({});
-      return combineReducer(state, action);
-    }
+    case "HYDRATE":
+      console.log(action);
+      return { ...state, ...action.payload };
+    case "LOG_IN":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isLoggedIn: true,
+          user: action.data,
+        },
+      };
+    case "LOG_OUT":
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      };
+    default:
+      return state;
   }
+
+  //   switch (action.type) {
+  //     case "HYDRATE":
+  //       console.log("HYDRATE", action);
+  //       return action.payload;
+  //     default: {
+  //       const combineReducer = combineReducers({});
+  //       return combineReducer(state, action);
+  //     }
+  //   }
 };
 
 export default rootReducer;

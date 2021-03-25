@@ -9,6 +9,7 @@ const loggerMiddleware = ({ dispath, getState }) => (next) => (acticon) => {
 
 const configureStore = () => {
   const store = createStore(reducer);
+  return store;
 };
 
 const wrapper = createWrapper(configureStore, {
