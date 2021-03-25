@@ -40,8 +40,11 @@ const rootReducer = (state = initialState, action) => {
     case "LOG_OUT":
       return {
         ...state,
-        isLoggedIn: false,
-        user: null,
+        user: {
+          ...state.user,
+          isLoggedIn: false,
+          user: null,
+        },
       };
     default:
       return state;

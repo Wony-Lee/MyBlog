@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import Router from "next/router";
 import styled from "@emotion/styled";
-import { loginAction } from "../reducer";
+import { loginAction, logoutAction } from "../reducer";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
 
@@ -45,12 +45,19 @@ const LoginComponents = () => {
     [id, password]
   );
 
+  const onLogout = useCallback((e) => {
+    e.preventDefault();
+    dispatch(logoutAction());
+  });
+
   return (
     <>
       <LoginLayout>
         <LoginForm onSubmit={onSubmit}>
           {isLoggedIn ? (
-            <div>로그아웃</div>
+            <div>
+              <button onClick={onLogout}>로그아웃</button>
+            </div>
           ) : (
             <div>로그인 되지 않았습니다.</div>
           )}

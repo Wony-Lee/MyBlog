@@ -1,5 +1,7 @@
 import { createWrapper } from "next-redux-wrapper";
 import { createStore, applyMiddleware, compose } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+
 import reducer from "../reducer/index";
 
 const loggerMiddleware = ({ dispath, getState }) => (next) => (acticon) => {
@@ -8,7 +10,12 @@ const loggerMiddleware = ({ dispath, getState }) => (next) => (acticon) => {
 };
 
 const configureStore = () => {
-  const store = createStore(reducer);
+  const middlewares = [];
+  const enhencer =
+    process.env.NODE_ENV === "production"
+      ? compose(applyMiddleware(...middlewares))
+      : composeWithDevTools(applyMiddleware(...middlewares));
+  const store = createStore(reducer, enhencer);
   return store;
 };
 
