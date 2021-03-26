@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import Router from "next/router";
 import styled from "@emotion/styled";
-import { loginAction, logoutAction } from "../reducer";
+import { loginAction, logoutAction } from "../reducer/user";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
 
