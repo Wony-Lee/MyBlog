@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import CommentForm from "./CommentForm";
 
 const CardForm = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ const CardContent = styled.div`
 
 const CardFooter = styled.div`
   border-top: 1px solid white;
+  border-bottom: 1px solid #ddd;
   display: flex;
   height: 40px;
   align-items: center;
@@ -49,9 +51,37 @@ const DeleteButton = styled.button`
   margin-left: 10px;
   margin-right: 20px;
 `;
+const CommentItem = styled.div`
+  width: 95%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  color: white;
+`;
+const ListForm = styled.div`
+  width: 95%;
+  display: flex;
+  padding: 5px;
+  color: white;
+`;
+const ListUl = styled.ul`
+  margin: 0px;
+  padding: 0;
+  list-style: none;
+`;
+const NameList = styled.li``;
+const NameSpan = styled.span`
+  paading: 5px;
+  color: white;
+`;
 
 const PostCard = ({ post }) => {
   const id = useSelector((state) => state.user.user?.id);
+  const [openComment, setOpenComment] = useState("");
+
+  const onToggleComment = useCallback((e) => {
+    setOpenComment((prev) => !prev);
+  }, []);
 
   return (
     <>
@@ -59,23 +89,35 @@ const PostCard = ({ post }) => {
         <CardArea>
           <CardTitle>
             <CardSpan>이름</CardSpan>
-            <CardSpan> {post.User.nickname}</CardSpan>
+            <CardSpan> {post.User.guestname}</CardSpan>
           </CardTitle>
-          <CardContent>
-            {post.content}
-            내용
-          </CardContent>
+          <CardContent>{post.content}</CardContent>
           <CardFooter>
             {id && guest.User.id === id ? (
               <>
                 <DeleteButton>삭제</DeleteButton>
               </>
             ) : (
-              <>
-                <div>없음</div>
-              </>
+              <></>
             )}
+            <div onClick={onToggleComment} style={{ background: "white" }}>
+              댓글
+            </div>
           </CardFooter>
+          {openComment && (
+            <div>
+              {/* <CommentItem>{`${post.Comments.length}개의 댓글`}</CommentItem> */}
+              <CommentForm />
+              <ListForm>
+                <ListUl>
+                  <NameList>
+                    <NameSpan>{post.User.guestname}</NameSpan>
+                    <NameSpan>{post.content}</NameSpan>
+                  </NameList>
+                </ListUl>
+              </ListForm>
+            </div>
+          )}
         </CardArea>
       </CardForm>
     </>
