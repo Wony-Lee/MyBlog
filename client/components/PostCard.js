@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 const CardForm = styled.div`
   display: flex;
@@ -48,23 +50,45 @@ const DeleteButton = styled.button`
   margin-right: 20px;
 `;
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
+  const id = useSelector((state) => state.user.user?.id);
+
   return (
     <>
       <CardForm>
         <CardArea>
           <CardTitle>
             <CardSpan>이름</CardSpan>
-            <CardSpan>홍길동</CardSpan>
+            <CardSpan> {post.User.nickname}</CardSpan>
           </CardTitle>
-          <CardContent>내용</CardContent>
+          <CardContent>
+            {post.content}
+            내용
+          </CardContent>
           <CardFooter>
-            <DeleteButton>삭제</DeleteButton>
+            {id && guest.User.id === id ? (
+              <>
+                <DeleteButton>삭제</DeleteButton>
+              </>
+            ) : (
+              <>
+                <div>없음</div>
+              </>
+            )}
           </CardFooter>
         </CardArea>
       </CardForm>
     </>
   );
+};
+
+PostCard.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    User: PropTypes.object,
+    content: PropTypes.string,
+    createAt: PropTypes.object,
+  }).isRequired,
 };
 
 export default PostCard;

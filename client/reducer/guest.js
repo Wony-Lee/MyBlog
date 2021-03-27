@@ -2,6 +2,10 @@ export const initialState = {
   guestPost: [
     {
       id: 1,
+      User: {
+        id: 1,
+        nickname: "홍사마",
+      },
       content: "Text",
     },
   ],
@@ -16,6 +20,7 @@ export const addPost = {
 
 const dummyPost = {
   id: 2,
+  nickname: "김길동",
   content: "Hi",
 };
 
