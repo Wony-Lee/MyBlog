@@ -20,6 +20,12 @@ export const initialState = {
           },
           content: "우~",
         },
+        {
+          User: {
+            guestname: "홍길길",
+          },
+          content: "호우~",
+        },
       ],
     },
   ],

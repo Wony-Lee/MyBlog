@@ -69,9 +69,13 @@ const ListUl = styled.ul`
   padding: 0;
   list-style: none;
 `;
-const NameList = styled.li``;
+const NameList = styled.li`
+  padding-top: 5px;
+  padding-bottom: 5px;
+`;
 const NameSpan = styled.span`
-  paading: 5px;
+  margin-bottom: 15px;
+  margin-right: 20px;
   color: white;
 `;
 
@@ -107,13 +111,15 @@ const PostCard = ({ post }) => {
           {openComment && (
             <div>
               <CommentItem> {`${post.Comments.length}개의 댓글`}</CommentItem>
-              <CommentForm />
+              <CommentForm post={post} />
               <ListForm>
                 <ListUl>
-                  <NameList>
-                    {/* <NameSpan>{post.Comments[0].User.guestname}</NameSpan>
-                    <NameSpan>{post.Comments[0].content}</NameSpan> */}
-                  </NameList>
+                  {post.Comments.map((item, comment) => (
+                    <NameList key={comment}>
+                      <NameSpan>{item.User.guestname} </NameSpan>
+                      <NameSpan>{item.content}</NameSpan>
+                    </NameList>
+                  ))}
                 </ListUl>
               </ListForm>
             </div>
