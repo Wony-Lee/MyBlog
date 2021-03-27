@@ -2,6 +2,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
 
 import user from "./user";
+import guest from "./guest";
 
 const rootReducer = combineReducers({
   index: (state = {}, action) => {
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     }
   },
   user,
+  guest,
   //   switch (action.type) {
   //     case "HYDRATE":
   //       console.log("HYDRATE", action);

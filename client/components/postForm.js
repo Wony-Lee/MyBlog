@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
+import useInput from "../hooks/useInput";
+import { useDispatch } from "react-redux";
+import { addPost } from "../reducer/guest";
 
 const GuestLayout = styled.div`
   width: 100%;
@@ -72,20 +75,36 @@ const ReturnBtn = styled.button`
 `;
 
 const PostForm = () => {
+  const dispatch = useDispatch();
+  const [guestName, onChangeGuestName] = useInput("");
+  const [guestText, onChangeGuestText] = useInput("");
+
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    dispatch(addPost);
+  }, []);
   return (
     <>
       <GuestLayout>
-        <PostContent>
+        <PostContent onSubmit={onSubmit}>
           <PostArea>
             <PostTitle>
               <PostSpan>이름</PostSpan>
-              <PostInput placeholder="Name" />
+              <PostInput
+                value={guestName}
+                onChange={onChangeGuestName}
+                placeholder="Name"
+              />
             </PostTitle>
             <PostCenter>
-              <PostTextArea />
+              <PostTextArea
+                value={guestText}
+                onChange={onChangeGuestText}
+                placeholder="내용을 입력해주세요."
+              />
             </PostCenter>
             <PostFooter>
-              <SuccessBtn>확인</SuccessBtn>
+              <SuccessBtn type="submit">확인</SuccessBtn>
               <ReturnBtn type="reset">취소</ReturnBtn>
             </PostFooter>
           </PostArea>
