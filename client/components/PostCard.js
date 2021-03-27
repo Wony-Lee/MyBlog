@@ -93,7 +93,7 @@ const PostCard = ({ post }) => {
           </CardTitle>
           <CardContent>{post.content}</CardContent>
           <CardFooter>
-            {id && guest.User.id === id ? (
+            {id && post.User.id === id ? (
               <>
                 <DeleteButton>삭제</DeleteButton>
               </>
@@ -106,13 +106,13 @@ const PostCard = ({ post }) => {
           </CardFooter>
           {openComment && (
             <div>
-              {/* <CommentItem>{`${post.Comments.length}개의 댓글`}</CommentItem> */}
+              <CommentItem> {`${post.Comments.length}개의 댓글`}</CommentItem>
               <CommentForm />
               <ListForm>
                 <ListUl>
                   <NameList>
-                    <NameSpan>{post.User.guestname}</NameSpan>
-                    <NameSpan>{post.content}</NameSpan>
+                    {/* <NameSpan>{post.Comments[0].User.guestname}</NameSpan>
+                    <NameSpan>{post.Comments[0].content}</NameSpan> */}
                   </NameList>
                 </ListUl>
               </ListForm>
@@ -130,6 +130,7 @@ PostCard.propTypes = {
     User: PropTypes.object,
     content: PropTypes.string,
     createAt: PropTypes.object,
+    Comments: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 
