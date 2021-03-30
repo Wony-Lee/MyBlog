@@ -19,7 +19,7 @@ function* addPost(action) {
   }
 }
 
-function* watchADdPost() {
+function* watchAddPost() {
   yield takeLatest("ADD_POST_REQUEST", addPost);
 }
 

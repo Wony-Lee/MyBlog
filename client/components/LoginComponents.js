@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import Router from "next/router";
 import styled from "@emotion/styled";
-import { loginAction, logoutAction } from "../reducer/user";
+import { loginRequestAction, logoutRequestAction } from "../reducer/user";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
 
@@ -33,21 +33,21 @@ const LoginTable = styled.table`
 const LoginComponents = () => {
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggingIn } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
       console.log(id, password);
-      dispatch(loginAction({ id, password }));
+      dispatch(loginRequestAction({ id, password }));
     },
     [id, password]
   );
 
   const onLogout = useCallback((e) => {
     e.preventDefault();
-    dispatch(logoutAction());
+    dispatch(logoutRequestAction());
   });
 
   return (
