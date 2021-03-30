@@ -5,7 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import reducer from "../reducer/index";
 import rootSaga from "../sagas/";
 
-const loggerMiddleware = ({ dispath, getState }) => (next) => (acticon) => {
+const loggerMiddleware = ({ dispath, getState }) => (next) => (action) => {
   console.log(action);
   return next(action);
 };
