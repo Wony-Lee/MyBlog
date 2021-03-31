@@ -1,29 +1,26 @@
 import produce from "immer";
 
 export const initialState = {
-  // logInLoading: false /* 로그인 로딩 */,
-  // logInDone: false,
-  // logInError: null,
+  logInLoading: false /* 로그인 로딩 */,
+  logInDone: false,
+  logInError: null,
 
-  // logOutLoading: false /* 로그인 로딩 */,
-  // logOutDone: false,
-  // logOutError: null,
+  logOutLoading: false /* 로그인 로딩 */,
+  logOutDone: false,
+  logOutError: null,
 
-  isLoggedIn: false,
-  isLoggingIn: false,
-  isLoggingOut: false,
   user: null,
   singUpDate: {},
   loginData: {},
 };
 
 export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
-export const LOG_IN_REQUEST = "LOG_IN_SUCCESS";
-export const LOG_IN_REQUEST = "LOG_IN_FAILURE";
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 
-export const LOG_IN_REQUEST = "LOG_OUT_REQUEST";
-export const LOG_IN_REQUEST = "LOG_OUT_SUCCESS";
-export const LOG_IN_REQUEST = "LOG_OUT_FAILURE";
+export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
+export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
+export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
 
 export const loginRequestAction = (data) => {
   return {
@@ -38,42 +35,54 @@ export const logoutRequestAction = () => {
   };
 };
 
+const dummyUser = (data) => ({
+  ...data,
+  id: 1,
+});
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN_REQUEST:
       return {
         ...state,
-        isLoggingIn: true,
+        logInLoading: true,
+        logInError: null,
+        logInDone: false,
       };
     case LOG_IN_SUCCESS:
       return {
         ...state,
-        isLoggingIn: false,
-        isLoggedIn: true,
-        user: action.data,
+        logInLoading: false,
+        logInDone: true,
+        logInError: false,
+        user: dumyUser(action.data),
       };
     case LOG_IN_FAILURE:
       return {
         ...state,
-        isLoggingIn: false,
-        isLoggedIn: true,
+        logInLoading: false,
+        logInDone: false,
+        loginError: action.error,
       };
     case LOG_OUT_REQUEST:
       return {
         ...state,
-        isLoggingOut: true,
+        logOutLoading: true,
+        logOutDone: false,
+        logOutError: null,
       };
     case LOG_OUT_SUCCESS:
       return {
         ...state,
-        isLoggingOut: false,
-        isLoggedIn: false,
+        logOutLoading: false,
+        logOutDone: true,
         user: null,
       };
     case LOG_OUT_FAILURE:
       return {
         ...state,
-        isLoggingOut: true,
+        logOutLoading: false,
+        logOutError: action.error,
       };
     default:
       return state;
