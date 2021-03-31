@@ -17,70 +17,60 @@ export const initialState = {
   loginData: {},
 };
 
-// export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
-// export const LOG_IN_REQUEST = "LOG_IN_SUCCESS";
-// export const LOG_IN_REQUEST = "LOG_IN_FAILURE";
+export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
+export const LOG_IN_REQUEST = "LOG_IN_SUCCESS";
+export const LOG_IN_REQUEST = "LOG_IN_FAILURE";
 
-// export const LOG_IN_REQUEST = "LOG_OUT_REQUEST";
-// export const LOG_IN_REQUEST = "LOG_OUT_SUCCESS";
-// export const LOG_IN_REQUEST = "LOG_OUT_FAILURE";
+export const LOG_IN_REQUEST = "LOG_OUT_REQUEST";
+export const LOG_IN_REQUEST = "LOG_OUT_SUCCESS";
+export const LOG_IN_REQUEST = "LOG_OUT_FAILURE";
 
 export const loginRequestAction = (data) => {
   return {
-    type: "LOG_IN_REQUEST",
+    type: LOG_IN_REQUEST,
     data,
   };
 };
 
 export const logoutRequestAction = () => {
   return {
-    type: "LOG_OUT_REQUEST",
-  };
-};
-export const logoutSuccessAction = () => {
-  return {
-    type: "LOG_OUT_SUCCESS",
-  };
-};
-export const logoutFailureAction = () => {
-  return {
-    type: "LOG_OUT_FAILURE",
+    type: LOG_OUT_REQUEST,
   };
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOG_IN_REQUEST":
+    case LOG_IN_REQUEST:
       return {
         ...state,
         isLoggingIn: true,
       };
-    case "LOG_IN_SUCCESS":
+    case LOG_IN_SUCCESS:
       return {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
         user: action.data,
       };
-    case "LOG_IN_FAILURE":
+    case LOG_IN_FAILURE:
       return {
         ...state,
         isLoggingIn: false,
         isLoggedIn: true,
       };
-    case "LOG_OUT_REQUEST":
+    case LOG_OUT_REQUEST:
       return {
         ...state,
         isLoggingOut: true,
       };
-    case "LOG_OUT_SUCCESS":
+    case LOG_OUT_SUCCESS:
       return {
         ...state,
         isLoggingOut: false,
         isLoggedIn: false,
         user: null,
       };
-    case "LOG_OUT_FAILURE":
+    case LOG_OUT_FAILURE:
       return {
         ...state,
         isLoggingOut: true,
