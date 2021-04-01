@@ -34,7 +34,7 @@ const LoginComponents = () => {
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { isLoggingIn } = useSelector((state) => state.user);
+  const { loginLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const onSubmit = useCallback(
     (e) => {
@@ -92,7 +92,9 @@ const LoginComponents = () => {
               <tfoot>
                 <tr>
                   <td>
-                    <button type="submit">로그인</button>
+                    <button type="submit" loading={loginLoading}>
+                      로그인
+                    </button>
                   </td>
                   <td>
                     <button>돌아가기</button>
