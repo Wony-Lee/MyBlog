@@ -1,7 +1,9 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
 import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { ADD_COMMENT_REQUEST } from "../reducer/guest";
 const CommentLayout = styled.div`
   width: 100%;
   display: flex;
@@ -26,13 +28,30 @@ const CommentInput = styled.input`
 `;
 
 const CommentForm = ({ post }) => {
-  const [comment, onChangeComment] = useInput("");
+  const dispatch = useDispatch();
+  const id = useSelector((state) => state.user.user?.id);
+  const { addCommentDone } = useSelector((state) => state);
+  const [comment, onChangeComment, setComment] = useInput("");
+
+  useEffect(() => {
+    if (addCommentDone) {
+      setText("");
+    }
+  }, [addCommentDone]);
+
   const onCommentSubmit = useCallback(
     (e) => {
       e.preventDefault();
       console.log(post.id, comment);
+      dispatch({
+        type: ADD_COMMENT_REQUEST,
+        data: {
+          content: comment,
+          postId: post.id,
+        },
+      });
     },
-    [comment]
+    [comment, id]
   );
 
   return (

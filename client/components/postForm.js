@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../reducer/guest";
 
 const GuestLayout = styled.div`
@@ -76,13 +76,23 @@ const ReturnBtn = styled.button`
 
 const PostForm = () => {
   const dispatch = useDispatch();
+  const { addPostDone } = useSelector((state) => state.guest);
   const [guestName, onChangeGuestName] = useInput("");
-  const [guestText, onChangeGuestText] = useInput("");
+  const [guestText, onChangeGuestText, setText] = useInput("");
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    dispatch(addPost);
-  }, []);
+  useEffect(() => {
+    if (addPostDone) {
+      setText("");
+    }
+  }, [addPostDone]);
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(addPost(guestText));
+    },
+    [guestText]
+  );
   return (
     <>
       <GuestLayout>

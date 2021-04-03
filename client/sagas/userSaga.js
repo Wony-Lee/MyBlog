@@ -1,8 +1,10 @@
 import axios from "axios";
 import { all, fork, delay, put, takeLatest } from "redux-saga/effects";
 import {
+  LOG_IN_REQUEST,
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
+  LOG_OUT_REQUEST,
   LOG_OUT_FAILURE,
   LOG_OUT_SUCCESS,
 } from "../reducer/user";
@@ -16,7 +18,6 @@ function* logIn(action) {
     yield delay(1000);
     yield put({
       type: LOG_IN_SUCCESS,
-      data: action.data,
     });
   } catch (err) {
     yield put({

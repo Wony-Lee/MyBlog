@@ -37,6 +37,7 @@ export const logoutRequestAction = () => {
 
 const dummyUser = (data) => ({
   ...data,
+  nickname: "Admin",
   id: 1,
 });
 
@@ -55,7 +56,7 @@ const reducer = (state = initialState, action) => {
         logInLoading: false,
         logInDone: true,
         logInError: false,
-        user: dumyUser(action.data),
+        user: dummyUser(action.data),
       };
     case LOG_IN_FAILURE:
       return {

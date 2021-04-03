@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Router from "next/router";
 import styled from "@emotion/styled";
 import { loginRequestAction, logoutRequestAction } from "../reducer/user";
@@ -31,18 +31,25 @@ const LoginTable = styled.table`
 `;
 
 const LoginComponents = () => {
-  const [id, onChangeId] = useInput("");
+  const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const { isLoggedIn } = useSelector((state) => state.user);
   const { loginLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      Router.back();
+    }
+  }, [isLoggedIn]);
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(id, password);
-      dispatch(loginRequestAction({ id, password }));
+      console.log(email, password);
+      dispatch(loginRequestAction({ email, password }));
     },
-    [id, password]
+    [email, password]
   );
 
   const onLogout = useCallback((e) => {
@@ -70,8 +77,8 @@ const LoginComponents = () => {
                   <td>
                     <input
                       id="user-id"
-                      value={id}
-                      onChange={onChangeId}
+                      value={email}
+                      onChange={onChangeEmail}
                       required
                     />
                   </td>
