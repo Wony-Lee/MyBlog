@@ -29,13 +29,13 @@ const CommentInput = styled.input`
 
 const CommentForm = ({ post }) => {
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.user.user?.id);
-  const { addCommentDone } = useSelector((state) => state);
+  const id = useSelector((state) => state.user?.id);
+  const { addCommentDone, addCommentLoading } = useSelector((state) => state);
   const [comment, onChangeComment, setComment] = useInput("");
-
+  console.log("id===>", id);
   useEffect(() => {
     if (addCommentDone) {
-      setText("");
+      setComment("");
     }
   }, [addCommentDone]);
 
@@ -59,7 +59,11 @@ const CommentForm = ({ post }) => {
       <CommentLayout>
         <CommentsForm onSubmit={onCommentSubmit}>
           <CommentInput value={comment} onChange={onChangeComment} />
-          <button type="submit" style={{ border: "1px solid aqua" }}>
+          <button
+            type="submit"
+            loading={addCommentLoading}
+            style={{ border: "1px solid aqua" }}
+          >
             작성
           </button>
         </CommentsForm>

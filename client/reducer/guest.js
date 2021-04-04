@@ -1,7 +1,9 @@
+import shortId from "shortid";
+
 export const initialState = {
   guestPost: [
     {
-      id: 2,
+      id: 1,
       User: {
         id: 1,
         guestname: "홍사마",
@@ -32,6 +34,10 @@ export const initialState = {
   addPostLoading: false,
   addPostDone: false,
   addPostError: null,
+
+  addCommentLoading: false,
+  addCommentDone: false,
+  addCommentError: null,
 };
 
 export const ADD_POST_REQUEST = "ADD_POST_REQUEST";
@@ -52,15 +58,24 @@ export const addComment = (data) => ({
   data,
 });
 
-const dummyPost = {
-  id: 2,
+const dummyPost = (data) => ({
+  id: shortId.generate(),
   User: {
     id: 1,
     guestname: "김길동",
   },
-  content: "더미데이터",
+  content: data,
   Comments: [],
-};
+});
+
+const dummyComment = (data) => ({
+  id: shortId.generate(),
+  content: data,
+  User: {
+    id: shortId.generate(),
+    guestname: "김길동",
+  },
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -74,7 +89,7 @@ const reducer = (state = initialState, action) => {
     case ADD_POST_SUCCESS:
       return {
         ...state,
-        guestPost: [dummyPost, ...state.guestPost],
+        guestPost: [dummyPost(action.data), ...state.guestPost],
         addPostLoading: false,
         addPostDone: true,
       };
@@ -91,12 +106,21 @@ const reducer = (state = initialState, action) => {
         addCommentDone: false,
         addCommentError: null,
       };
-    case ADD_COMMENT_SUCCESS:
+    case ADD_COMMENT_SUCCESS: {
+      const postIndex = state.guestPost.findIndex(
+        (v) => v.id === action.data.postId
+      );
+      const post = { ...state.guestPost[postIndex] };
+      post.Comments = [dummyComment(action.data.content), ...post.Comments];
+      const guestPost = [...state.guestPost];
+      guestPosts[postIndex] = post;
       return {
         ...state,
-        addPostLoading: false,
-        addPostDone: true,
+        guestPost,
+        addCommentLoading: false,
+        addCommentDone: true,
       };
+    }
     case ADD_COMMENT_FAILURE:
       return {
         ...state,
