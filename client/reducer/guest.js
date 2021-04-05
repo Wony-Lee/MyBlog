@@ -107,13 +107,13 @@ const reducer = (state = initialState, action) => {
         addCommentError: null,
       };
     case ADD_COMMENT_SUCCESS: {
-      const postIndex = state.guestPost.findIndex(
-        (v) => v.id === action.data.postId
+      const guestIndex = state.guestPost.findIndex(
+        (item) => item.id === action.data.postId
       );
-      const post = { ...state.guestPost[postIndex] };
-      post.Comments = [dummyComment(action.data.content), ...post.Comments];
+      const guest = { ...state.guestPost[guestIndex] };
+      guest.Comments = [dummyComment(action.data.content), ...guest.Comments];
       const guestPost = [...state.guestPost];
-      guestPosts[postIndex] = post;
+      guestPost[guestIndex] = guest;
       return {
         ...state,
         guestPost,

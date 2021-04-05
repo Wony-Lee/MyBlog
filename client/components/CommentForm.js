@@ -21,33 +21,36 @@ const CommentsForm = styled.form`
 
 const CommentInput = styled.input`
   border: 0px;
-  width: 85%;
+  width: 65%;
   height: 30px;
   outline: none;
   margin-right: 12px;
 `;
 
+const CommentNameInput = styled.input``;
+
 const CommentForm = ({ post }) => {
   const dispatch = useDispatch();
   const id = useSelector((state) => state.user?.id);
   const { addCommentDone, addCommentLoading } = useSelector((state) => state);
+  const [commentName, onChangeCommentName, setCommentName] = useInput("");
   const [comment, onChangeComment, setComment] = useInput("");
-  console.log("id===>", id);
   useEffect(() => {
     if (addCommentDone) {
       setComment("");
+      setCommentName("");
     }
   }, [addCommentDone]);
 
   const onCommentSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      console.log(post.id, comment);
       dispatch({
         type: ADD_COMMENT_REQUEST,
         data: {
           content: comment,
           postId: post.id,
+          userId: id,
         },
       });
     },
@@ -58,6 +61,10 @@ const CommentForm = ({ post }) => {
     <>
       <CommentLayout>
         <CommentsForm onSubmit={onCommentSubmit}>
+          <CommentNameInput
+            value={commentName}
+            onChange={onChangeCommentName}
+          />
           <CommentInput value={comment} onChange={onChangeComment} />
           <button
             type="submit"
