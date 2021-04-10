@@ -56,6 +56,7 @@ const CommentForm = ({ post }) => {
     },
     [comment, id]
   );
+  console.log(onCommentSubmit);
 
   return (
     <>

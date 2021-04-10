@@ -62,8 +62,8 @@ export const addComment = (data) => ({
 const dummyPost = (data) => ({
   id: shortId.generate(),
   User: {
-    id: 1,
-    guestname: "김길동",
+    id: shortId.generate(),
+    guestname: data,
   },
   content: data,
   Comments: [],
