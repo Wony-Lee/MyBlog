@@ -31,7 +31,6 @@ const CommentNameInput = styled.input``;
 
 const CommentForm = ({ post }) => {
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.user?.id);
   const { addCommentDone, addCommentLoading } = useSelector((state) => state);
   const [commentName, onChangeCommentName, setCommentName] = useInput("");
   const [comment, onChangeComment, setComment] = useInput("");
@@ -48,15 +47,14 @@ const CommentForm = ({ post }) => {
       dispatch({
         type: ADD_COMMENT_REQUEST,
         data: {
+          name: commentName,
           content: comment,
           postId: post.id,
-          userId: id,
         },
       });
     },
-    [comment, id]
+    [comment, commentName]
   );
-  console.log(onCommentSubmit);
 
   return (
     <>

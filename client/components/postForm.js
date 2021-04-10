@@ -77,21 +77,22 @@ const ReturnBtn = styled.button`
 const PostForm = () => {
   const dispatch = useDispatch();
   const { addPostDone } = useSelector((state) => state.guest);
-  const [guestName, onChangeGuestName] = useInput("");
+  const [guestName, onChangeGuestName, setName] = useInput("");
   const [guestText, onChangeGuestText, setText] = useInput("");
 
   useEffect(() => {
     if (addPostDone) {
       setText("");
+      setName("");
     }
   }, [addPostDone]);
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(addPost(guestText));
+      dispatch(addPost(guestText, guestName));
     },
-    [guestText]
+    [guestText, guestName]
   );
   return (
     <>

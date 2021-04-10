@@ -116,7 +116,7 @@ const PostCard = ({ post }) => {
                 <ListUl>
                   {post.Comments.map((item, comment) => (
                     <NameList key={comment}>
-                      <NameSpan>{item.User.guestname} </NameSpan>
+                      <NameSpan>{item.name} </NameSpan>
                       <NameSpan>{item.content}</NameSpan>
                     </NameList>
                   ))}

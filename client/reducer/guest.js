@@ -49,33 +49,32 @@ export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
 
-export const addPost = (data) => ({
+export const addPost = (data, name) => ({
   type: ADD_POST_REQUEST,
   data,
+  name,
 });
 
-export const addComment = (data) => ({
+export const addComment = (data, name) => ({
   type: ADD_COMMENT_REQUEST,
   data,
+  name,
 });
 
-const dummyPost = (data) => ({
+const dummyPost = (data, name) => ({
   id: shortId.generate(),
+  content: data,
   User: {
     id: shortId.generate(),
-    guestname: data,
+    guestname: name,
   },
-  content: data,
   Comments: [],
 });
 
-const dummyComment = (data) => ({
+const dummyComment = (data, name) => ({
   id: shortId.generate(),
   content: data,
-  User: {
-    id: shortId.generate(),
-    guestname: data.name,
-  },
+  guestname: name,
 });
 
 const reducer = (state = initialState, action) =>
@@ -89,7 +88,7 @@ const reducer = (state = initialState, action) =>
       case ADD_POST_SUCCESS:
         draft.addPostLoading = false;
         draft.addPostDone = true;
-        draft.guestPost.unshift(dummyPost(action.data));
+        draft.guestPost.unshift(dummyPost(action.data, action.name));
         break;
       case ADD_POST_FAILURE:
         draft.addPostLoading = false;
@@ -104,7 +103,10 @@ const reducer = (state = initialState, action) =>
         const guest = draft.guestPost.find(
           (item) => item.id === action.data.postId
         );
-        guest.Comments.unshift(dummyComment(action.data.content));
+        guest.Comments.unshift(
+          dummyComment(action.data.content, action.data.name)
+        );
+        console.log(action.data.name);
         draft.addCommentLoading = false;
         draft.addCommentDone = true;
         break;
