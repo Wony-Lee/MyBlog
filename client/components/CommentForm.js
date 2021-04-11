@@ -27,13 +27,21 @@ const CommentInput = styled.input`
   margin-right: 12px;
 `;
 
-const CommentNameInput = styled.input``;
+const CommentNameInput = styled.input`
+  margin: 0px 10px;
+  height: 30px;
+  border: 0;
+  outline: none;
+`;
 
 const CommentForm = ({ post }) => {
   const dispatch = useDispatch();
-  const { addCommentDone, addCommentLoading } = useSelector((state) => state);
+  const { addCommentDone, addCommentLoading } = useSelector(
+    (state) => state.guest
+  );
   const [commentName, onChangeCommentName, setCommentName] = useInput("");
   const [comment, onChangeComment, setComment] = useInput("");
+
   useEffect(() => {
     if (addCommentDone) {
       setComment("");
@@ -63,6 +71,7 @@ const CommentForm = ({ post }) => {
           <CommentNameInput
             value={commentName}
             onChange={onChangeCommentName}
+            maxLength="6"
           />
           <CommentInput value={comment} onChange={onChangeComment} />
           <button
