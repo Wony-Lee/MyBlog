@@ -93,7 +93,7 @@ const PostCard = ({ post }) => {
         <CardArea>
           <CardTitle>
             <CardSpan>이름</CardSpan>
-            <CardSpan> {post.User.guestname}</CardSpan>
+            <CardSpan> {post.guestname}</CardSpan>
           </CardTitle>
           <CardContent>{post.content}</CardContent>
           <CardFooter>
@@ -116,7 +116,7 @@ const PostCard = ({ post }) => {
                 <ListUl>
                   {post.Comments.map((item, comment) => (
                     <NameList key={comment}>
-                      <NameSpan>{item.name} </NameSpan>
+                      <NameSpan>{item.commentName} </NameSpan>
                       <NameSpan>{item.content}</NameSpan>
                     </NameList>
                   ))}

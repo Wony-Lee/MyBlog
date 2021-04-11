@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
 import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../reducer/guest";
+import { addPost, ADD_POST_REQUEST } from "../reducer/guest";
 
 const GuestLayout = styled.div`
   width: 100%;
@@ -87,10 +87,24 @@ const PostForm = () => {
     }
   }, [addPostDone]);
 
+  // const onSubmit = useCallback(
+  //   (e) => {
+  //     e.preventDefault();
+  //     dispatch(addPost(guestText, guestName));
+  //   },
+  //   [guestText, guestName]
+  // );
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(addPost(guestText, guestName));
+      dispatch({
+        type: ADD_POST_REQUEST,
+        data: {
+          guestname: guestName,
+          content: guestText,
+        },
+      });
     },
     [guestText, guestName]
   );
