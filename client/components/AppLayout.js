@@ -69,13 +69,11 @@ const PageContents = styled.div`
 `;
 
 const VoidDiv = styled.div`
-  border: 2px solid white;
   width: 10%;
 `;
 
 const EtcDiv = styled.div`
-margin-top:30px;
-  
+  margin-top:30px;
   border: 2px solid white;
   position: relative
   bottom: 0px;
@@ -127,9 +125,9 @@ const AppLayout = ({ children }) => {
         </NavRight>
       </NavForm>
       <ContentLayout>
-        <VoidDiv>asd</VoidDiv>
+        <VoidDiv></VoidDiv>
         <PageContents>{children}</PageContents>
-        <VoidDiv>asd</VoidDiv>
+        <VoidDiv></VoidDiv>
       </ContentLayout>
       <EtcDiv>
         <EtcText>내용추가</EtcText>

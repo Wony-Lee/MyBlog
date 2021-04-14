@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Link from "next/link";
 
 const DailyLayout = styled.div`
   border: 1px solid white;
@@ -47,13 +48,17 @@ const DailyContent = () => {
       <DailyLayout>
         <DayContent>
           <DayItem>
-            <DayImage>일상 컨텐츠1</DayImage>
-            <DaySubject>
-              <Dayul>
-                <Dayli>제목</Dayli>
-                <Dayli>제목 내용</Dayli>
-              </Dayul>
-            </DaySubject>
+            <Link href="/blog/dailyView">
+              <a>
+                <DayImage>일상 컨텐츠1</DayImage>
+                <DaySubject>
+                  <Dayul>
+                    <Dayli>제목</Dayli>
+                    <Dayli>제목 내용</Dayli>
+                  </Dayul>
+                </DaySubject>
+              </a>
+            </Link>
           </DayItem>
 
           <DayItem>
