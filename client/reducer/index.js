@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 
 import user from "./user";
 import guest from "./guest";
+import daily from "./daily";
 
 const rootReducer = combineReducers({
   index: (state = {}, action) => {
@@ -19,6 +20,8 @@ const rootReducer = combineReducers({
   },
   user,
   guest,
+  daily,
+
   //   switch (action.type) {
   //     case "HYDRATE":
   //       console.log("HYDRATE", action);
