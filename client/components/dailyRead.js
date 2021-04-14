@@ -5,10 +5,16 @@ const DailyContent = styled.div`
   border: 1px solid white;
 `;
 
+const DailyForm = styled.div`
+  border: 1px solid red;
+`;
+
 const DailyRead = () => {
   return (
     <>
-      <DailyContent>asdasd</DailyContent>
+      <DailyContent>
+        <DailyForm></DailyForm>
+      </DailyContent>
     </>
   );
 };
