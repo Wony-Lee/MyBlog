@@ -60,46 +60,6 @@ const DailyContent = () => {
               </a>
             </Link>
           </DayItem>
-
-          <DayItem>
-            <DayImage>일상 컨텐츠2</DayImage>
-            <DaySubject>
-              <Dayul>
-                <Dayli>제목</Dayli>
-                <Dayli>제목 내용</Dayli>
-              </Dayul>
-            </DaySubject>
-          </DayItem>
-
-          <DayItem>
-            <DayImage>일상 컨텐츠3</DayImage>
-            <DaySubject>
-              <Dayul>
-                <Dayli>제목</Dayli>
-                <Dayli>제목 내용</Dayli>
-              </Dayul>
-            </DaySubject>
-          </DayItem>
-
-          <DayItem>
-            <DayImage>일상 컨텐츠4</DayImage>
-            <DaySubject>
-              <Dayul>
-                <Dayli>제목</Dayli>
-                <Dayli>제목 내용</Dayli>
-              </Dayul>
-            </DaySubject>
-          </DayItem>
-
-          <DayItem>
-            <DayImage>일상 컨텐츠5</DayImage>
-            <DaySubject>
-              <Dayul>
-                <Dayli>제목</Dayli>
-                <Dayli>제목 내용</Dayli>
-              </Dayul>
-            </DaySubject>
-          </DayItem>
         </DayContent>
       </DailyLayout>
     </>

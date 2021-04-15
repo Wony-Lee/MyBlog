@@ -75,7 +75,8 @@ const reducer = (state = initialState, action) =>
         draft.addPostLoading = false;
         draft.addPostDone = true;
         draft.guestPost.unshift(
-          dummyPost(action.data.content, action.data.guestname)
+          // dummyPost(action.data.content, action.data.guestname)
+          action.data
         );
         console.log(action.data.guestname);
         break;
