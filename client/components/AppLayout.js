@@ -107,7 +107,7 @@ const AppLayout = ({ children }) => {
           ) : (
             <GuestText>환영합니다.</GuestText>
           )}
-          <Link href="/blog/dailyWrite">
+          <Link href="/blog/dailys">
             <NavAtag>
               <NavText>일상</NavText>
             </NavAtag>

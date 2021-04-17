@@ -1,15 +1,16 @@
 import React from "react";
 import AppLayout from "../../components/AppLayout";
 import DailyPost from "../../components/dailyPost";
+import DailyContainer from "../../components/DailyComponents/dailyContainer";
 
-const DailyWrite = () => {
+const Dailys = () => {
   return (
     <>
       <AppLayout>
-        <DailyPost />
+        <DailyContainer />
       </AppLayout>
     </>
   );
 };
 
-export default DailyWrite;
+export default Dailys;
