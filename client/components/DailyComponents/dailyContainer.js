@@ -4,9 +4,8 @@ import DailyForm from "./dailyForm";
 import DailyPost from "./dailyPost";
 
 const Container = styled.div`
-  border: 1px solid red;
   height: 100%;
-  padding: 5% 15%;
+  padding: 5% 20%;
 `;
 
 const DailyContainer = () => {
