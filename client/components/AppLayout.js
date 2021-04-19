@@ -20,6 +20,9 @@ button{
   height: 30px;
   width: 100px;
 }
+input {
+  outline:none;
+}
   `;
 
 const NavForm = styled.div`
@@ -105,7 +108,11 @@ const AppLayout = ({ children }) => {
           {isLoggedIn ? (
             <GuestText>관리자 로그인중</GuestText>
           ) : (
-            <GuestText>환영합니다.</GuestText>
+            <Link href="/login">
+              <a>
+                <GuestText>로그인</GuestText>
+              </a>
+            </Link>
           )}
           <Link href="/blog/dailys">
             <NavAtag>

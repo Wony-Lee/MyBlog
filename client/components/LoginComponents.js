@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect } from "react";
+import Link from "next/link";
 import Router from "next/router";
 import styled from "@emotion/styled";
 import { loginRequestAction, logoutRequestAction } from "../reducer/user";
@@ -9,9 +10,11 @@ const LoginLayout = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  background: white;
+  height: 500px;
 `;
 const LoginForm = styled.form`
-  margin-top: 10%;
+  margin-top: 5%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -73,7 +76,7 @@ const LoginComponents = () => {
             <LoginTable>
               <tbody>
                 <tr>
-                  <td>아이디</td>
+                  <td>이메일</td>
                   <td>
                     <input
                       id="user-id"
@@ -104,7 +107,11 @@ const LoginComponents = () => {
                     </button>
                   </td>
                   <td>
-                    <button>돌아가기</button>
+                    <Link href="/signup">
+                      <a>
+                        <button>회원가입</button>
+                      </a>
+                    </Link>
                   </td>
                 </tr>
               </tfoot>

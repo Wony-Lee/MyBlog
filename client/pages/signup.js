@@ -1,7 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useInput from "../hooks/useInput";
 import AppLayout from "../components/AppLayout";
 import styled from "@emotion/styled";
+import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
+import { SIGN_UP_REQUEST } from "../reducer/user";
 
 const SignContainer = styled.div`
   margin-left: 10%;
@@ -33,6 +36,29 @@ const ErrorDiv = styled.div`
 `;
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const { signUpLoading, signUpDone, signUpError, user } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    if (user && user.id) {
+      Router.replace("/blog");
+    }
+  }, [user && user.id]);
+
+  useEffect(() => {
+    if (signUpDone) {
+      Router.replace("/blog");
+    }
+  }, [signUpDone]);
+
+  useEffect(() => {
+    if (signUpError) {
+      alert(signUpError);
+    }
+  }, [signUpError]);
+
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
@@ -54,16 +80,23 @@ const SignUp = () => {
     setTermError(false);
   }, []);
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    if (password !== passwordCheck) {
-      return setPasswordError(true);
-    }
-    if (!term) {
-      return setTermError(true);
-    }
-    console.log(email, nickname, password);
-  }, []);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (password !== passwordCheck) {
+        return setPasswordError(true);
+      }
+      if (!term) {
+        return setTermError(true);
+      }
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: { email, password, nickname },
+      });
+      console.log(email, password, passwordCheck, term);
+    },
+    [email, password, passwordCheck, term]
+  );
 
   return (
     <>
@@ -116,7 +149,9 @@ const SignUp = () => {
                 checked={term}
                 onChange={onChangeTerm}
               />
-              <span style={{ color: "white" }}>가입하는 것에 대한 동의</span>
+              <label htmlFor="user-term" style={{ color: "white" }}>
+                가입하는 것에 대한 동의
+              </label>
               {termError && <ErrorDiv>약관에 동의해주셔야 합니다.</ErrorDiv>}
             </div>
             <div>
