@@ -10,7 +10,6 @@ const Container = styled.div`
 const PostForm = styled.form`
   border: 1px solid white;
   padding-bottom: 5px;
-  background: white;
 `;
 
 const PostTitle = styled.div`

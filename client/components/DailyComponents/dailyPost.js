@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const DailyContainer = styled.div`
-  border: 1px solid white;
   color: white;
 `;
 
@@ -17,8 +16,8 @@ const DailyContent = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 10px;
-  height: 200px;
+  margin-bottom: 5px;
+  height: 170px;
 `;
 const Title = styled.span`
   width: 70%;
@@ -37,6 +36,10 @@ const PostItem = styled.div`
   box-shadow: 5px 5px 5px #ddd;
   color: black;
 `;
+const EtcMenu = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 const DailyPost = () => {
   return (
@@ -49,6 +52,12 @@ const DailyPost = () => {
           <DailyContent>
             <PostItem>PostItem</PostItem>
           </DailyContent>
+          <EtcMenu>
+            <div>
+              <button style={{ marginRight: "10px" }}>수정</button>
+              <button>삭제</button>
+            </div>
+          </EtcMenu>
         </DailyPosts>
       </DailyContainer>
     </>
