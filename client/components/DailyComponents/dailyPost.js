@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
+import Daily from "../../pages/daily";
 
 const DailyContainer = styled.div`
   color: white;
@@ -41,16 +43,17 @@ const EtcMenu = styled.div`
   justify-content: flex-end;
 `;
 
-const DailyPost = () => {
+const DailyPost = ({ daily }) => {
+  const id = useSelector((state) => state.user.user?.id);
   return (
     <>
       <DailyContainer>
         <DailyPosts>
           <DailyTitle>
-            <Title>Title</Title>
+            <Title>{daily.Title}</Title>
           </DailyTitle>
           <DailyContent>
-            <PostItem>PostItem</PostItem>
+            <PostItem>{Daily.Content}</PostItem>
           </DailyContent>
           <EtcMenu>
             <div>

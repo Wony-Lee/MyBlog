@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
-import { jsx, css } from "@emotion/css";
+import useInput from "../../hooks/useInput";
+import { DAILY_POST_REQUEST } from "../../reducer/daily";
 
 const Container = styled.div`
   color: white;
@@ -79,23 +81,58 @@ const Button = styled.button`
 `;
 
 const DailyForm = () => {
+  const [title, onChangeTitle, setTitle] = useInput("");
+  const [content, onChangeContent, setContent] = useInput("");
+  const dispatch = useDispatch();
+  const { dailyPostDone } = useSelector((state) => state.daily);
+
+  useEffect(() => {
+    if (dailyPostDone) {
+      setTitle("");
+      setContent("");
+    }
+  }, [dailyPostDone]);
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch({
+        type: DAILY_POST_REQUEST,
+        data: {
+          dailyTitle: title,
+          dailyContent: content,
+        },
+      });
+    },
+    [title, content]
+  );
   return (
     <>
       <Container>
-        <PostForm>
+        <PostForm onSubmit={onSubmit}>
           <PostTitle>
-            <PostInput placeholder="Title" />
+            <PostInput
+              placeholder="Title"
+              value={title}
+              onChange={onChangeTitle}
+              required
+            />
           </PostTitle>
           <PostItem>
-            <PostTextarea></PostTextarea>
+            <PostTextarea
+              value={content}
+              onChange={onChangeContent}
+            ></PostTextarea>
           </PostItem>
           <PostFootForm>
             <div>
               <input type="file" id="fileUpload" style={{ display: "none" }} />
-              <Label for="fileUpload">파일업로드</Label>
+              <Label htmlFor="fileUpload">파일업로드</Label>
             </div>
             <BtnBox>
-              <Button style={{ background: "navy" }}>작성</Button>
+              <Button type="submit" style={{ background: "navy" }}>
+                작성
+              </Button>
               <Button style={{ background: "orange" }}>취소</Button>
             </BtnBox>
           </PostFootForm>

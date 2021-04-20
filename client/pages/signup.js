@@ -155,7 +155,11 @@ const SignUp = () => {
               {termError && <ErrorDiv>약관에 동의해주셔야 합니다.</ErrorDiv>}
             </div>
             <div>
-              <button type="submit" style={{ marginRight: "10px" }}>
+              <button
+                type="submit"
+                style={{ marginRight: "10px" }}
+                onLoad={signUpLoading.toString}
+              >
                 가입하기
               </button>
               <button type="reset">돌아가기</button>

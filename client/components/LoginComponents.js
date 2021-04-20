@@ -37,7 +37,7 @@ const LoginComponents = () => {
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { loginLoading } = useSelector((state) => state.user);
+  const { logInDone, loginLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,13 +64,14 @@ const LoginComponents = () => {
     <>
       <LoginLayout>
         <LoginForm onSubmit={onSubmit}>
-          {isLoggedIn ? (
+          {logInDone ? (
             <div>
               <button onClick={onLogout}>로그아웃</button>
             </div>
           ) : (
             <div>로그인 되지 않았습니다.</div>
           )}
+          {console.log(logInDone)}
           <h1>로그인</h1>
           <LoginTableForm>
             <LoginTable>
