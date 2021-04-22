@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
-import Daily from "../../pages/daily";
+import PropTypes from "prop-types";
 
 const DailyContainer = styled.div`
   color: white;
@@ -50,10 +50,10 @@ const DailyPost = ({ daily }) => {
       <DailyContainer>
         <DailyPosts>
           <DailyTitle>
-            <Title>{daily.Title}</Title>
+            <Title>{daily}</Title>
           </DailyTitle>
           <DailyContent>
-            <PostItem>{Daily.Content}</PostItem>
+            <PostItem>{daily}</PostItem>
           </DailyContent>
           <EtcMenu>
             <div>
@@ -65,6 +65,16 @@ const DailyPost = ({ daily }) => {
       </DailyContainer>
     </>
   );
+};
+
+DailyPost.propTypes = {
+  daily: PropTypes.shape({
+    id: PropTypes.number,
+    User: PropTypes.object,
+    dailytitle: PropTypes.string,
+    content: PropTypes.string,
+    createAt: PropTypes.object,
+  }).isRequired,
 };
 
 export default DailyPost;

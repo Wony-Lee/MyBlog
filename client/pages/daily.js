@@ -10,9 +10,9 @@ const Daily = () => {
     <>
       <AppLayout>
         <DailyForm />
-        {/* {dailyPost.map((daily) => (
+        {dailyPost.map((daily) => (
           <DailyPost key={daily.id} daily={daily} />
-        ))} */}
+        ))}
       </AppLayout>
     </>
   );
