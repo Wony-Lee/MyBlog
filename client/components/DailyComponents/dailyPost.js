@@ -44,7 +44,6 @@ const EtcMenu = styled.div`
 `;
 
 const DailyPost = ({ daily }) => {
-  const id = useSelector((state) => state.user.user?.id);
   return (
     <>
       <DailyContainer>
@@ -67,14 +66,14 @@ const DailyPost = ({ daily }) => {
   );
 };
 
-DailyPost.propTypes = {
-  daily: PropTypes.shape({
-    id: PropTypes.number,
-    User: PropTypes.object,
-    dailytitle: PropTypes.string,
-    content: PropTypes.string,
-    createAt: PropTypes.object,
-  }).isRequired,
-};
+// DailyPost.propTypes = {
+//   daily: PropTypes.shape({
+//     id: PropTypes.number,
+//     User: PropTypes.object,
+//     dailytitle: PropTypes.string,
+//     content: PropTypes.string,
+//     createAt: PropTypes.object,
+//   }).isRequired,
+// };
 
 export default DailyPost;

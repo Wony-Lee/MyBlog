@@ -106,7 +106,7 @@ const PostForm = () => {
         },
       });
     },
-    [guestText, guestName]
+    [guestName, guestText]
   );
   return (
     <>
