@@ -2,27 +2,11 @@ import produce from "immer";
 import shortId from "shortid";
 
 export const initialState = {
-  guestPost: [
-    {
-      id: 1,
-      guestname: "홍사마",
-      content: "Text",
-      Comments: [
-        {
-          commentName: "김동식",
-          content: "오~",
-        },
-        {
-          commentName: "오동통",
-          content: "우~",
-        },
-        {
-          commentName: "홍길길",
-          content: "호우~",
-        },
-      ],
-    },
-  ],
+  guestPost: [],
+  singlePost: [],
+  imagePath: [],
+  hasMorePosts: true,
+
   addPostLoading: false,
   addPostDone: false,
   addPostError: null,
@@ -30,6 +14,14 @@ export const initialState = {
   addCommentLoading: false,
   addCommentDone: false,
   addCommentError: null,
+
+  loadPostLoading: false,
+  loadPostDone: false,
+  LoadPostError: null,
+
+  loadPostsLoading: false,
+  loadPostsDone: false,
+  loadPostsError: null,
 };
 
 export const ADD_POST_REQUEST = "ADD_POST_REQUEST";
@@ -39,6 +31,14 @@ export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
 export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
+
+export const LOAD_POST_REQUEST = "LOAD_POST_REQUEST";
+export const LOAD_POST_SUCCESS = "LOAD_POST_SUCCESS";
+export const LOAD_POST_FAILURE = "LOAD_POST_FAILURE";
+
+export const LOAD_POSTS_REQUEST = "LOAD_POSTS_REQUEST";
+export const LOAD_POSTS_SUCCESS = "LOAD_POSTS_SUCCESS";
+export const LOAD_POSTS_FAILURE = "LOAD_POSTS_FAILURE";
 
 export const addPost = (data) => ({
   type: ADD_POST_REQUEST,
@@ -100,11 +100,40 @@ const reducer = (state = initialState, action) =>
         draft.addCommentLoading = false;
         draft.addCommentDone = true;
         break;
-
       case ADD_COMMENT_FAILURE:
         draft.addCommentLoading = false;
         draft.addCommentError = action.error;
         break;
+      case LOAD_POST_REQUEST:
+        draft.loadPostLoading = true;
+        draft.loadPostDone = false;
+        draft.loadPostError = null;
+        break;
+      case LOAD_POST_SUCCESS:
+        draft.loadPostLoading = false;
+        draft.loadPostDone = true;
+        draft.singlePost = action.data;
+        break;
+      case LOAD_POST_FAILURE:
+        draft.loadPostLoading = false;
+        draft.LoadPostError = action.error;
+        break;
+      case LOAD_POSTS_REQUEST:
+        draft.loadPostsLoading = true;
+        draft.loadPostsDone = false;
+        draft.loadPostsError = null;
+        break;
+      case LOAD_POSTS_SUCCESS:
+        draft.loadPostsLoading = false;
+        draft.loadPostsDone = true;
+        draft.guestPost = draft.guestPost.concat(action.data);
+        draft.hasMorePosts = action.data.length === 10;
+        break;
+      case LOAD_POSTS_FAILURE:
+        draft.loadPostsLoading = false;
+        draft.loadPostsError = action.error;
+        break;
+
       default:
         break;
     }
