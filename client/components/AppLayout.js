@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { injectGlobal } from "@emotion/css";
+import Footer from "./Footer";
 
 injectGlobal`
 body{
@@ -76,16 +77,13 @@ const VoidDiv = styled.div`
 `;
 
 const EtcDiv = styled.div`
-  margin-top:30px;
   border: 2px solid white;
-  position: relative
+  position: relative;
   bottom: 0px;
 `;
 
 const EtcText = styled.span`
   color: white;
-  padding-left: 30px;
-  font-size: 15pt;
 `;
 
 const GuestText = styled.div`
@@ -137,7 +135,9 @@ const AppLayout = ({ children }) => {
         <VoidDiv></VoidDiv>
       </ContentLayout>
       <EtcDiv>
-        <EtcText>내용추가</EtcText>
+        <EtcText>
+          <Footer />
+        </EtcText>
       </EtcDiv>
     </>
   );
