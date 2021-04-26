@@ -44,15 +44,15 @@ const BodyContent = () => {
             </Link>
           </ContentItem>
           <ContentItem>
-            <Link href="/portfolio">
+            <Link href="/blog/port/portfolio">
               <a>포트폴리오</a>
             </Link>
           </ContentItem>
         </ContentLeft>
         <ContentRight>
           <ContentItem>
-            <Link href="/daily">
-              <a>일상</a>
+            <Link href="/blog/board/list">
+              <a>게시판</a>
             </Link>
           </ContentItem>
           <ContentItem>

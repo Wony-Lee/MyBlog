@@ -112,16 +112,7 @@ const AppLayout = ({ children }) => {
               </a>
             </Link>
           )}
-          <Link href="/blog/dailys">
-            <NavAtag>
-              <NavText>일상</NavText>
-            </NavAtag>
-          </Link>
-          <Link href="/blog/portWrite">
-            <NavAtag>
-              <NavText>포트폴리오</NavText>
-            </NavAtag>
-          </Link>
+
           <Link href="/blog">
             <NavAtag>
               <NavText>blog</NavText>

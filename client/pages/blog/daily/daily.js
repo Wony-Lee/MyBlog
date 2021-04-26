@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import AppLayout from "../components/AppLayout";
+import AppLayout from "../../../components/AppLayout";
 
 const Daily = () => {
   return (
