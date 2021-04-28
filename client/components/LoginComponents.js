@@ -36,15 +36,14 @@ const LoginTable = styled.table`
 const LoginComponents = () => {
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
-  const { isLoggedIn } = useSelector((state) => state.user);
   const { logInDone, loginLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      Router.back();
+    if (logInDone) {
+      Router.replace("/");
     }
-  }, [isLoggedIn]);
+  }, [logInDone]);
 
   const onSubmit = useCallback(
     (e) => {
@@ -54,11 +53,6 @@ const LoginComponents = () => {
     },
     [email, password]
   );
-
-  const onLogout = useCallback((e) => {
-    e.preventDefault();
-    dispatch(logoutRequestAction());
-  });
 
   return (
     <>

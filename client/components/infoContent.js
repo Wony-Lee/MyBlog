@@ -55,32 +55,34 @@ const InfoContent = () => {
         <RightCard>
           <RightCardItem>
             <RightTable>
-              <tr>
-                <RightTd>이름</RightTd>
-                <RightTd>홍길동</RightTd>
-              </tr>
-              <tr>
-                <RightTd>나이</RightTd>
-                <RightTd>28세</RightTd>
-              </tr>
-              <tr>
-                <RightTd>거주</RightTd>
-                <RightTd>강서구</RightTd>
-              </tr>
-              <tr>
-                <RightTd>별자리</RightTd>
-                <RightTd>처녀자리</RightTd>
-              </tr>
-              <tr>
-                <RightTd>구성</RightTd>
-                <RightTd>
-                  <ListItem>
-                    <li>NextJs</li>
-                    <li>Node Express</li>
-                    <li>MySQL</li>
-                  </ListItem>
-                </RightTd>
-              </tr>
+              <tbody>
+                <tr>
+                  <RightTd>이름</RightTd>
+                  <RightTd>홍길동</RightTd>
+                </tr>
+                <tr>
+                  <RightTd>나이</RightTd>
+                  <RightTd>28세</RightTd>
+                </tr>
+                <tr>
+                  <RightTd>거주</RightTd>
+                  <RightTd>강서구</RightTd>
+                </tr>
+                <tr>
+                  <RightTd>별자리</RightTd>
+                  <RightTd>처녀자리</RightTd>
+                </tr>
+                <tr>
+                  <RightTd>구성</RightTd>
+                  <RightTd>
+                    <ListItem>
+                      <li>NextJs</li>
+                      <li>Node Express</li>
+                      <li>MySQL</li>
+                    </ListItem>
+                  </RightTd>
+                </tr>
+              </tbody>
             </RightTable>
           </RightCardItem>
         </RightCard>

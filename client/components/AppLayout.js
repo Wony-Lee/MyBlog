@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { injectGlobal } from "@emotion/css";
+import { logoutRequestAction } from "../reducer/user";
 import Footer from "./Footer";
 
 injectGlobal`
@@ -91,7 +92,12 @@ const GuestText = styled.div`
 `;
 
 const AppLayout = ({ children }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const onLogout = useCallback((e) => {
+    e.preventDefault();
+    dispatch(logoutRequestAction());
+  });
   return (
     <>
       <NavForm>
@@ -103,8 +109,12 @@ const AppLayout = ({ children }) => {
           </Link>
         </NavLeft>
         <NavRight>
-          {isLoggedIn ? (
-            <GuestText>관리자 로그인중</GuestText>
+          {user ? (
+            <Link href="/logout">
+              <a>
+                <GuestText onClick={onLogout}>로그아웃</GuestText>
+              </a>
+            </Link>
           ) : (
             <Link href="/login">
               <a>
@@ -112,7 +122,6 @@ const AppLayout = ({ children }) => {
               </a>
             </Link>
           )}
-
           <Link href="/blog">
             <NavAtag>
               <NavText>blog</NavText>
