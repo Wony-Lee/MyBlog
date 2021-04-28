@@ -58,14 +58,6 @@ const LoginComponents = () => {
     <>
       <LoginLayout>
         <LoginForm onSubmit={onSubmit}>
-          {logInDone ? (
-            <div>
-              <button onClick={onLogout}>로그아웃</button>
-            </div>
-          ) : (
-            <div>로그인 되지 않았습니다.</div>
-          )}
-          {console.log(logInDone)}
           <h1>로그인</h1>
           <LoginTableForm>
             <LoginTable>

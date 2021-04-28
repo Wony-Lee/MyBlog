@@ -4,6 +4,7 @@ import AppLayout from "../components/AppLayout";
 import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
+import Link from "next/link";
 import { SIGN_UP_REQUEST } from "../reducer/user";
 
 const SignContainer = styled.div`
@@ -157,12 +158,16 @@ const SignUp = () => {
             <div>
               <button
                 type="submit"
-                style={{ marginRight: "10px" }}
+                style={{ margin: "10px" }}
                 onLoad={signUpLoading.toString}
               >
                 가입하기
               </button>
-              <button type="reset">돌아가기</button>
+              <Link href="/blog">
+                <a>
+                  <button type="reset">돌아가기</button>
+                </a>
+              </Link>
             </div>
           </SignUpForm>
         </SignContainer>

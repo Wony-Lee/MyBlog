@@ -80,7 +80,7 @@ const NameSpan = styled.span`
 `;
 
 const PostCard = ({ post }) => {
-  const id = useSelector((state) => state.user.user?.id);
+  const { user } = useSelector((state) => state.user);
   const [openComment, setOpenComment] = useState("");
 
   const onToggleComment = useCallback((e) => {
@@ -97,14 +97,14 @@ const PostCard = ({ post }) => {
           </CardTitle>
           <CardContent>{post.content}</CardContent>
           <CardFooter>
-            {id && post.User.id === id ? (
+            {user ? (
               <>
                 <DeleteButton>삭제</DeleteButton>
               </>
             ) : (
-              <></>
+              <>ThisThis</>
             )}
-            <div onClick={onToggleComment} style={{ background: "white" }}>
+            <div onClick={onToggleComment} style={{ color: "white" }}>
               댓글
             </div>
           </CardFooter>

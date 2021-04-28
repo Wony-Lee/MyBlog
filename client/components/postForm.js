@@ -28,7 +28,7 @@ const PostTitle = styled.div`
 `;
 
 const PostInput = styled.input`
-  widht: 100px;
+  width: 40%;
   margin-left: 10px;
   height: 25px;
   outline: none;
@@ -119,6 +119,7 @@ const PostForm = () => {
                 value={guestName}
                 onChange={onChangeGuestName}
                 placeholder="Name"
+                maxLength="4"
               />
             </PostTitle>
             <PostCenter>
