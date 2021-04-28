@@ -14,6 +14,7 @@ export const initialState = {
   signUpError: null,
 
   user: null,
+  userInfo: null,
   singUpDate: {},
   loginData: {},
 };
