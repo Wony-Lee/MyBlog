@@ -91,7 +91,7 @@ const reducer = (state = initialState, action) =>
         break;
       case ADD_COMMENT_SUCCESS:
         const guest = draft.guestPost.find(
-          (item) => item.id === action.data.PostId
+          (item) => item.id === action.data.GuestId
         );
         guest.Comments.unshift(action.data);
         draft.addCommentLoading = false;
