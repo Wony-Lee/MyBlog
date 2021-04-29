@@ -21,6 +21,7 @@ const CardTitle = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 const CardSpan = styled.div`
@@ -79,10 +80,15 @@ const NameSpan = styled.span`
   color: white;
 `;
 
+const DateForm = styled.div`
+  position: absolute;
+  right: 0;
+  font-size: 10pt;
+`;
+
 const PostCard = ({ post }) => {
   const { user } = useSelector((state) => state.user);
   const [openComment, setOpenComment] = useState("");
-
   const onToggleComment = useCallback((e) => {
     setOpenComment((prev) => !prev);
   }, []);
@@ -94,6 +100,10 @@ const PostCard = ({ post }) => {
           <CardTitle>
             <CardSpan>이름</CardSpan>
             <CardSpan> {post.guestname}</CardSpan>
+            <DateForm>
+              <CardSpan>작성일</CardSpan>
+              <CardSpan>{post.createdAt}</CardSpan>
+            </DateForm>
           </CardTitle>
           <CardContent>{post.content}</CardContent>
           <CardFooter>

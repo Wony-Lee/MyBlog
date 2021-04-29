@@ -1,9 +1,12 @@
 import React from "react";
-
+import AppLayout from "../../../components/AppLayout";
+import WriteSection from "../../../components/Board/WriteSection";
 const Write = () => {
   return (
     <>
-      <div>글작성</div>
+      <AppLayout>
+        <WriteSection />
+      </AppLayout>
     </>
   );
 };

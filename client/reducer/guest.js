@@ -50,12 +50,12 @@ export const addComment = (data) => ({
   data,
 });
 
-const dummyPost = (data, name) => ({
-  id: shortId.generate(),
-  content: data,
-  guestname: name,
-  Comments: [],
-});
+// const dummyPost = (data, name) => ({
+//   id: shortId.generate(),
+//   content: data,
+//   guestname: name,
+//   Comments: [],
+// });
 
 const dummyComment = (data, name) => ({
   id: shortId.generate(),
@@ -91,12 +91,9 @@ const reducer = (state = initialState, action) =>
         break;
       case ADD_COMMENT_SUCCESS:
         const guest = draft.guestPost.find(
-          (item) => item.id === action.data.postId
+          (item) => item.id === action.data.PostId
         );
-        guest.Comments.unshift(
-          dummyComment(action.data.content, action.data.commentName)
-        );
-        console.log(action.data.commentName);
+        guest.Comments.unshift(action.data);
         draft.addCommentLoading = false;
         draft.addCommentDone = true;
         break;

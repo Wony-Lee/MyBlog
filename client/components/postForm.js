@@ -87,14 +87,6 @@ const PostForm = () => {
     }
   }, [addPostDone]);
 
-  // const onSubmit = useCallback(
-  //   (e) => {
-  //     e.preventDefault();
-  //     dispatch(addPost(guestText, guestName));
-  //   },
-  //   [guestText, guestName]
-  // );
-
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
@@ -115,18 +107,22 @@ const PostForm = () => {
           <PostArea>
             <PostTitle>
               <PostSpan>이름</PostSpan>
+              <label htmlFor="guestName"></label>
               <PostInput
                 value={guestName}
                 onChange={onChangeGuestName}
                 placeholder="Name"
                 maxLength="4"
+                id="guestName"
               />
             </PostTitle>
             <PostCenter>
+              <label htmlFor="guestText"></label>
               <PostTextArea
                 value={guestText}
                 onChange={onChangeGuestText}
                 placeholder="내용을 입력해주세요."
+                id="guestText"
               />
             </PostCenter>
             <PostFooter>

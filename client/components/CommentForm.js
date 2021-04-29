@@ -68,12 +68,19 @@ const CommentForm = ({ post }) => {
     <>
       <CommentLayout>
         <CommentsForm onSubmit={onCommentSubmit}>
+          <label htmlFor="commentName"></label>
           <CommentNameInput
             value={commentName}
             onChange={onChangeCommentName}
             maxLength="6"
+            id="commentName"
           />
-          <CommentInput value={comment} onChange={onChangeComment} />
+          <label htmlFor="comment"></label>
+          <CommentInput
+            value={comment}
+            id="comment"
+            onChange={onChangeComment}
+          />
           <button
             type="submit"
             loading={addCommentLoading}
