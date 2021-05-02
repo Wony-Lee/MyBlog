@@ -1,12 +1,13 @@
 import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import useInput from "../../hooks/useInput";
+import reducer from "../../reducer/guest";
 
 const WriteForm = styled.form`
   width: 100%;
+  height: 100%;
 `;
 const WriteContainer = styled.div`
-  
   display: flex;
   flex-direction:column;
   align-items:center;
@@ -38,6 +39,26 @@ const ContentText = styled.textarea`
 const SectionThree = styled.div`
   margin: 30px;
 `;
+const PreViewSection = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 50%;
+  height: 150px;
+  padding: 2px;
+  overflow: scroll;
+`;
+const PreviewBox = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const PreView = styled.div`
+  border: 1px solid white;
+  min-width: 100px;
+  height: 100px;
+  margin: 5px;
+`;
+
 const FileInput = styled.input`
   display: none;
 `;
@@ -50,6 +71,16 @@ const FileLable = styled.label`
 const WriteSection = () => {
   const [boardTitle, onChangeBoardTitle, setBoardTitle] = useInput("");
   const [boardContent, onChangeBoardContent, setBoardContent] = useInput("");
+  // const [Images, onChangeImages, setImages] = useInput("");
+
+  // const onChangeImages = (e) => {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     const base64 = reader.result;
+  //     if (base24) {
+  //     }
+  //   };
+  // };
 
   const onReset = () => {
     setBoardTitle("");
@@ -60,7 +91,7 @@ const WriteSection = () => {
   }, []);
   return (
     <>
-      <WriteForm onSubmit={onSubmit}>
+      <WriteForm onSubmit={onSubmit} encType="multipart/form-data">
         <WriteContainer>
           <SectionOne>
             <label htmlFor="boardTitle"></label>
@@ -80,6 +111,11 @@ const WriteSection = () => {
               placeholder="내용을 입력해주세요."
             ></ContentText>
           </SectionTwo>
+          <PreViewSection>
+            <PreviewBox>
+              <PreView></PreView>
+            </PreviewBox>
+          </PreViewSection>
           <SectionThree>
             <FileLable htmlFor="boardFileUpload">파일선택</FileLable>
             <FileInput type="file" id="boardFileUpload" />
