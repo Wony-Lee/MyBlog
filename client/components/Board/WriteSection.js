@@ -1,7 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 import useInput from "../../hooks/useInput";
-import reducer from "../../reducer/guest";
+import { ADD_BOARD_REQUEST, UPLOAD_IMAGES_REQUEST } from "../../reducer/board";
+import { useDispatch, useSelector } from "react-redux";
 
 const WriteForm = styled.form`
   width: 100%;
@@ -57,8 +58,15 @@ const PreView = styled.div`
   min-width: 100px;
   height: 100px;
   margin: 5px;
+  position: relative;
 `;
-
+const RemoveBtn = styled.span`
+  position: absolute;
+  color: white;
+  right: 0;
+  padding: 3px;
+  cursor: pointer;
+`;
 const FileInput = styled.input`
   display: none;
 `;
@@ -69,26 +77,68 @@ const FileLable = styled.label`
 `;
 
 const WriteSection = () => {
+  const dispatch = useDispatch();
+  const { addBoardDone, imagesPath } = useSelector((state) => state.board);
   const [boardTitle, onChangeBoardTitle, setBoardTitle] = useInput("");
   const [boardContent, onChangeBoardContent, setBoardContent] = useInput("");
-  // const [Images, onChangeImages, setImages] = useInput("");
-
-  // const onChangeImages = (e) => {
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     const base64 = reader.result;
-  //     if (base24) {
-  //     }
-  //   };
-  // };
 
   const onReset = () => {
     setBoardTitle("");
     setBoardContent("");
   };
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-  }, []);
+
+  useEffect(() => {
+    if (addBoardDone) {
+      setBoardTitle("");
+      setBoardContent("");
+    }
+  }, [addBoardDone]);
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (
+        !boardTitle ||
+        !boardTitle.trim() ||
+        !boardContent ||
+        !boardContent.trim()
+      ) {
+        return alert("제목 혹은 내용을 입력해주세요.");
+      }
+      const formData = new FormData();
+      imagesPath.forEach((p) => {
+        formData.append("image", p);
+      });
+      formData.append("content", text);
+      dispatch({
+        type: ADD_BOARD_REQUEST,
+        data: formData,
+      });
+    },
+    [boardTitle, boardContent, imagesPath]
+  );
+
+  const imageInput = useRef();
+  const onClickImageUpload = useCallback(() => {
+    imageInput.current.click();
+  }, [imageInput.current]);
+  const onChangeImages = useCallback((e) => {
+    console.log(e.target.files);
+    const imageFormData = new FormData();
+    [].forEach.call(e.target.files, (f) => {
+      imageFormData.append("image", f);
+    });
+    dispatch({
+      type: UPLOAD_IMAGES_REQUEST,
+      data: imageFormData,
+    });
+  });
+  const onRemoveImage = (index) => {
+    dispatch({
+      type: REMOVE_IMAGE,
+      data: index,
+    });
+  };
   return (
     <>
       <WriteForm onSubmit={onSubmit} encType="multipart/form-data">
@@ -113,12 +163,27 @@ const WriteSection = () => {
           </SectionTwo>
           <PreViewSection>
             <PreviewBox>
-              <PreView></PreView>
+              {imagesPath.map((v, i) => (
+                <PreView key={v}>
+                  <RemoveBtn onClick={onRemoveImage(i)}>X</RemoveBtn>
+                  <img
+                    src={`http://localhost:4444/${v}`}
+                    style={{ width: "100%" }}
+                    alt={v}
+                  ></img>
+                </PreView>
+              ))}
             </PreviewBox>
           </PreViewSection>
           <SectionThree>
-            <FileLable htmlFor="boardFileUpload">파일선택</FileLable>
-            <FileInput type="file" id="boardFileUpload" />
+            <FileLable onClick={onClickImageUpload}>파일선택</FileLable>
+            <FileInput
+              type="file"
+              multiple
+              id="boardFileUpload"
+              ref={imageInput}
+              onChange={onChangeImages}
+            />
           </SectionThree>
           <div>
             <button type="submit" style={{ margin: "10px" }}>
