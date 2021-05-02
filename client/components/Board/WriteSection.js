@@ -1,7 +1,11 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 import useInput from "../../hooks/useInput";
-import { ADD_BOARD_REQUEST, UPLOAD_IMAGES_REQUEST } from "../../reducer/board";
+import {
+  ADD_BOARD_REQUEST,
+  UPLOAD_IMAGES_REQUEST,
+  REMOVE_IMAGE,
+} from "../../reducer/board";
 import { useDispatch, useSelector } from "react-redux";
 
 const WriteForm = styled.form`
@@ -109,7 +113,8 @@ const WriteSection = () => {
       imagesPath.forEach((p) => {
         formData.append("image", p);
       });
-      formData.append("content", text);
+      formData.append("boardTitle", boardTitle);
+      formData.append("boardContent", boardContent);
       dispatch({
         type: ADD_BOARD_REQUEST,
         data: formData,

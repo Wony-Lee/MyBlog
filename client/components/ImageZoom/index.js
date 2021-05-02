@@ -7,14 +7,33 @@ const ImagesZoom = ({ images, onClose }) => {
   return (
     <>
       <div>
-        <Slick
-          initialSlide={0}
-          infinite
-          beforeChange={(slide) => setCurrentSlide(slide)}
-          arrows={false}
-          slidesToShow={1}
-          slidesToScroll={1}
-        ></Slick>
+        <div>
+          <h1>상세이미지</h1>
+        </div>
+        <div>
+          <div>
+            <Slick
+              initialSlide={0}
+              beforeafterChange={(slide) => setCurrentSlide(slide)}
+              infinite
+              arrows={false}
+              slidesToShow={1}
+              slidesToScroll={1}
+            >
+              {images.map((v) => (
+                <ImageWrapper key={v.src}>
+                  <img src={`http://localhost:4444/${v.src}`} alt={v.src} />
+                </ImageWrapper>
+              ))}
+            </Slick>
+            <div>
+              <div>
+                {currentSlide + 1}
+                {""}/{images.length}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
