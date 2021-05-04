@@ -9,6 +9,7 @@ const ImagesZoom = ({ images, onClose }) => {
       <div>
         <div>
           <h1>상세이미지</h1>
+          <button onClick={onClose}></button>
         </div>
         <div>
           <div>
@@ -28,8 +29,7 @@ const ImagesZoom = ({ images, onClose }) => {
             </Slick>
             <div>
               <div>
-                {currentSlide + 1}
-                {""}/{images.length}
+                {currentSlide + 1}/{images.length}
               </div>
             </div>
           </div>

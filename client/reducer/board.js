@@ -43,6 +43,8 @@ const reducer = (state = initialState, action) =>
       case ADD_BOARD_SUCCESS:
         draft.addBoardLoding = false;
         draft.addBoardDone = true;
+        draft.boardPost.unshift(action.data);
+        draft.imagesPath = [];
         break;
       case ADD_BOARD_REQUEST:
         draft.addBoardLoding = false;

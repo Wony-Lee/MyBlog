@@ -56,7 +56,7 @@ const ReadSection = ({ board }) => {
           <ReadContent>content</ReadContent>
         </ReadSectionOne>
         <ReadSectionTwo>
-          <ReadImage>Photo</ReadImage>
+          <ReadImage></ReadImage>
         </ReadSectionTwo>
       </ReadContainer>
     </>

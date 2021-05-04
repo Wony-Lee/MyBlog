@@ -128,7 +128,7 @@ const WriteSection = () => {
     imageInput.current.click();
   }, [imageInput.current]);
   const onChangeImages = useCallback((e) => {
-    console.log(e.target.files);
+    console.log("images", e.target.files);
     const imageFormData = new FormData();
     [].forEach.call(e.target.files, (f) => {
       imageFormData.append("image", f);
@@ -169,22 +169,27 @@ const WriteSection = () => {
           <PreViewSection>
             <PreviewBox>
               {imagesPath.map((v, i) => (
-                <PreView key={v}>
-                  <RemoveBtn onClick={onRemoveImage(i)}>X</RemoveBtn>
+                <PreView key={v} style={{ display: "inline-block" }}>
+                  {/* <RemoveBtn onClick={onRemoveImage(i)}>X</RemoveBtn> */}
                   <img
                     src={`http://localhost:4444/${v}`}
-                    style={{ width: "100%" }}
+                    style={{ width: "200px" }}
                     alt={v}
-                  ></img>
+                  />
                 </PreView>
               ))}
             </PreviewBox>
           </PreViewSection>
           <SectionThree>
-            <FileLable onClick={onClickImageUpload}>파일선택</FileLable>
+            <button type="button" onClick={onClickImageUpload}>
+              파일선택
+            </button>
             <FileInput
               type="file"
               multiple
+              hidden
+              name="image"
+              accept="image/jpeg, image/jpg, image/png"
               id="boardFileUpload"
               ref={imageInput}
               onChange={onChangeImages}

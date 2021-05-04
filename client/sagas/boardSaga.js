@@ -29,7 +29,7 @@ function* addBoard(action) {
 }
 
 function uploadImagesAPI(data) {
-  return axios.post("/board/images", data);
+  return axios.post(`/board/images`, data);
 }
 
 function* uploadImages(action) {
