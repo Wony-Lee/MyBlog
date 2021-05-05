@@ -67,9 +67,11 @@ const PreView = styled.div`
 const RemoveBtn = styled.span`
   position: absolute;
   color: white;
+  top: 0;
   right: 0;
   padding: 3px;
   cursor: pointer;
+  background: black;
 `;
 const FileInput = styled.input`
   display: none;
@@ -138,12 +140,12 @@ const WriteSection = () => {
       data: imageFormData,
     });
   });
-  const onRemoveImage = (index) => {
+  const onRemoveImage = useCallback((index) => () => {
     dispatch({
       type: REMOVE_IMAGE,
       data: index,
     });
-  };
+  });
   return (
     <>
       <WriteForm onSubmit={onSubmit} encType="multipart/form-data">
@@ -170,12 +172,16 @@ const WriteSection = () => {
             <PreviewBox>
               {imagesPath.map((v, i) => (
                 <PreView key={v} style={{ display: "inline-block" }}>
-                  {/* <RemoveBtn onClick={onRemoveImage(i)}>X</RemoveBtn> */}
                   <img
                     src={`http://localhost:4444/${v}`}
                     style={{ width: "200px" }}
                     alt={v}
                   />
+                  <div>
+                    <RemoveBtn type="button" onClick={onRemoveImage(i)}>
+                      X
+                    </RemoveBtn>
+                  </div>
                 </PreView>
               ))}
             </PreviewBox>

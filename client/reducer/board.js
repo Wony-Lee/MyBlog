@@ -11,6 +11,10 @@ export const initialState = {
   uploadImagesloading: false,
   uploadImagesDone: false,
   uploadImagesError: null,
+
+  loadBoardLoading: false,
+  loadBoardDone: false,
+  loadBoardError: null,
 };
 
 export const ADD_BOARD_REQUEST = "ADD_BOARD_REQUEST";
@@ -21,9 +25,17 @@ export const UPLOAD_IMAGES_REQUEST = "UPLOAD_IMAGES_REQUEST";
 export const UPLOAD_IMAGES_SUCCESS = "UPLOAD_IMAGES_SUCCESS";
 export const UPLOAD_IMAGES_FAILURE = "UPLOAD_IMAGES_FAILURE";
 
-export const REMOVE_IMAGE_REQUEST = "REMOVE_IMAGE_REQUEST";
-export const REMOVE_IMAGE_SUCCESS = "REMOVE_IMAGE_SUCCESS";
-export const REMOVE_IMAGE_FAILURE = "REMOVE_IMAGE_FAILURE";
+export const REMOVE_BOARD_REQUEST = "REMOVE_BOARD_REQUEST";
+export const REMOVE_BOARD_SUCCESS = "REMOVE_BOARD_SUCCESS";
+export const REMOVE_BOARD_FAILURE = "REMOVE_BOARD_FAILURE";
+
+export const LOAD_BOARD_REQUEST = "LOAD_BOARD_REQUEST";
+export const LOAD_BOARD_SUCCESS = "LOAD_BOARD_SUCCESS";
+export const LOAD_BOARD_FAILURE = "LOAD_BOARD_FAILURE";
+
+export const LOAD_BOARDS_REQUEST = "LOAD_BOARDS_REQUEST";
+export const LOAD_BOARSD_SUCCESS = "LOAD_BOARDS_SUCCESS";
+export const LOAD_BOASRD_FAILURE = "LOAD_BOARDS_FAILURE";
 
 export const REMOVE_IMAGE = "REMOVE_IMAGE";
 
@@ -50,6 +62,21 @@ const reducer = (state = initialState, action) =>
         draft.addBoardLoding = false;
         draft.addBaordError = action.error;
         break;
+
+      case LOAD_BOARD_REQUEST:
+        break;
+      case LOAD_BOARD_SUCCESS:
+        break;
+      case LOAD_BOARD_REQUEST:
+        break;
+
+      case LOAD_BOARDS_REQUEST:
+        break;
+      case LOAD_BOARDS_SUCCESS:
+        break;
+      case LOAD_BOARDS_REQUEST:
+        break;
+
       case UPLOAD_IMAGES_REQUEST:
         draft.uploadImagesloading = true;
         draft.uploadImagesDone = false;
