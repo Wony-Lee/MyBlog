@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import PostImages from "./postImages";
+import { useDispatch } from "react-redux";
 
 const ReadContainer = styled.div`
   border: 1px solid white;
@@ -47,7 +48,9 @@ const ReadImage = styled.div`
   color: white;
 `;
 
-const ReadSection = ({ board }) => {
+const ReadSection = () => {
+  const disptach = useDispatch();
+
   return (
     <>
       <ReadContainer>

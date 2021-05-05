@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AppLayout from "../../../components/AppLayout";
-import ListHeadTitle from "../../../components/Board/ListHeadTitle";
-import ListSection from "../../../components/Board/ListSection";
-import { LOAD_BOARDS_REQUEST } from "../../../reducer/board";
+import AppLayout from "../components/AppLayout";
+import ListHeadTitle from "../components/Board/ListHeadTitle";
+import ListSection from "../components/Board/ListSection";
+import { LOAD_BOARDS_REQUEST } from "../reducer/board";
 import axios from "axios";
-import wrapper from "../../../store/configureStore";
+import wrapper from "../store/configureStore";
 import { END } from "redux-saga";
 
 const List = () => {

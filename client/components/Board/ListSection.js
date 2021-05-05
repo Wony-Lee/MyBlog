@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
+import PostImages from "./postImages";
 
 const ListForm = styled.div`
   margin-top: 3%;
@@ -20,6 +20,8 @@ const ListTitleSpan = styled.span`
   padding: 15px;
 `;
 
+const PhotoZone = styled.div``;
+
 const ListContentSpan = styled.span`
   font-size: 15pt;
   padding: 15px;
@@ -35,20 +37,14 @@ const ListSection = ({ board }) => {
     <ListForm>
       <ListSectionForm>
         <ListTitleSpan>{board.boardTitle}</ListTitleSpan>
+        <PhotoZone>
+          {board.Images[0] && <PostImages images={board.Images} />}
+        </PhotoZone>
         <ListContentSpan>{board.boardContent}</ListContentSpan>
         <ListEtcSpan>{board.createdAt}</ListEtcSpan>
       </ListSectionForm>
     </ListForm>
   );
 };
-
-// ListSection.propTypes = {
-//   ListSection: PropTypes.shape({
-//     id: PropTypes.number,
-//     User: PropTypes.object,
-//     content: PropTypes.string,
-//     createAt: PropTypes.string,
-//   }).isRequired,
-// };
 
 export default ListSection;

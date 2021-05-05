@@ -54,7 +54,7 @@ function* uploadImages(action) {
 }
 
 function loadBoardAPI(data) {
-  return axios.get(`/board/list/${data}`);
+  return axios.get(`/board/${data}`);
 }
 function* loadBoard(action) {
   try {

@@ -51,7 +51,7 @@ const BodyContent = () => {
         </ContentLeft>
         <ContentRight>
           <ContentItem>
-            <Link href="/blog/board/list">
+            <Link href="/board">
               <a>게시판</a>
             </Link>
           </ContentItem>

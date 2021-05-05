@@ -4,12 +4,15 @@ import ImagesZoom from "../ImageZoom";
 
 const PostImages = ({ images }) => {
   const [showImagesZoom, setShowImagesZoom] = useState(false);
+
   const onZoom = useCallback(() => {
     setShowImagesZoom(true);
   }, []);
+
   const onClose = useCallback(() => {
     setShowImagesZoom(false);
   }, []);
+
   if (images.length === 1) {
     return (
       <>
@@ -18,6 +21,7 @@ const PostImages = ({ images }) => {
           src={`http://localhost:4444/${images[0].src}`}
           alt={images[0].src}
           onClick={onZoom}
+          style={{ width: "300px" }}
         />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
       </>
@@ -28,15 +32,17 @@ const PostImages = ({ images }) => {
       <>
         <img
           role="presentation"
-          src={`http://localhost:3333/${images[0].src}`}
+          src={`http://localhost:4444/${images[0].src}`}
           alt={images[0].src}
           onClick={onZoom}
+          style={{ width: "300px", display: "inline-block" }}
         />
         <img
           role="presentation"
-          src={`http://localhost:3333/${images[1].src}`}
+          src={`http://localhost:4444/${images[1].src}`}
           alt={images[1].src}
           onClick={onZoom}
+          style={{ width: "300px", display: "inline-block" }}
         />
       </>
     );
@@ -46,11 +52,21 @@ const PostImages = ({ images }) => {
       <div>
         <img
           role="presentation"
-          src={`http://localhost:3333/${images[0].src}`}
+          src={`http://localhost:4444/${images[0].src}`}
           alt={images[0].src}
           onClick={onZoom}
+          style={{ width: "300px" }}
         />
-        <div role="presentation" onClick={onZoom}>
+        <div
+          role="presentation"
+          style={{
+            display: "inline-block",
+            width: "50%",
+            textAlign: "center",
+            verticalAlign: "middle",
+          }}
+          onClick={onZoom}
+        >
           <br />
           {images.length - 1}개의 이미지 더보기
         </div>
