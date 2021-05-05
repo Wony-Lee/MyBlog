@@ -3,6 +3,8 @@ import produce from "immer";
 export const initialState = {
   boardPost: [],
   imagesPath: [],
+  singleBoard: [],
+  hasMoreBoards: true,
 
   addBoardLoding: false,
   addBoardDone: false,
@@ -15,6 +17,10 @@ export const initialState = {
   loadBoardLoading: false,
   loadBoardDone: false,
   loadBoardError: null,
+
+  loadBoardsLoading: false,
+  loadBoardsDone: false,
+  loadBoardsError: null,
 };
 
 export const ADD_BOARD_REQUEST = "ADD_BOARD_REQUEST";
@@ -34,8 +40,8 @@ export const LOAD_BOARD_SUCCESS = "LOAD_BOARD_SUCCESS";
 export const LOAD_BOARD_FAILURE = "LOAD_BOARD_FAILURE";
 
 export const LOAD_BOARDS_REQUEST = "LOAD_BOARDS_REQUEST";
-export const LOAD_BOARSD_SUCCESS = "LOAD_BOARDS_SUCCESS";
-export const LOAD_BOASRD_FAILURE = "LOAD_BOARDS_FAILURE";
+export const LOAD_BOARDS_SUCCESS = "LOAD_BOARDS_SUCCESS";
+export const LOAD_BOARDS_FAILURE = "LOAD_BOARDS_FAILURE";
 
 export const REMOVE_IMAGE = "REMOVE_IMAGE";
 
@@ -58,23 +64,38 @@ const reducer = (state = initialState, action) =>
         draft.boardPost.unshift(action.data);
         draft.imagesPath = [];
         break;
-      case ADD_BOARD_REQUEST:
+      case ADD_BOARD_FAILURE:
         draft.addBoardLoding = false;
         draft.addBaordError = action.error;
         break;
 
       case LOAD_BOARD_REQUEST:
+        draft.loadBoardLoading = true;
+        draft.loadBoardDone = false;
+        draft.loadBoardError = null;
         break;
       case LOAD_BOARD_SUCCESS:
+        draft.loadBoardLoding = false;
+        draft.loadBoardDone = true;
+        draft.singleBoard = action.data;
         break;
-      case LOAD_BOARD_REQUEST:
+      case LOAD_BOARD_FAILURE:
         break;
 
       case LOAD_BOARDS_REQUEST:
+        draft.loadBoardsLoading = true;
+        draft.loadBoardsDone = false;
+        draft.loadBoardsError = null;
         break;
       case LOAD_BOARDS_SUCCESS:
+        draft.loadBoardsLoading = false;
+        draft.loadBoardsDone = true;
+        draft.boardPost = draft.boardPost.concat(action.data);
+        draft.hasMoreBoards = action.data.length === 10;
         break;
-      case LOAD_BOARDS_REQUEST:
+      case LOAD_BOARDS_FAILURE:
+        draft.loadBoardsLoading = false;
+        draft.loadBoardsError = action.error;
         break;
 
       case UPLOAD_IMAGES_REQUEST:

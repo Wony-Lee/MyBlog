@@ -1,5 +1,4 @@
 import produce from "immer";
-import shortId from "shortid";
 
 export const initialState = {
   guestPost: [],
@@ -48,19 +47,6 @@ export const addPost = (data) => ({
 export const addComment = (data) => ({
   type: ADD_COMMENT_REQUEST,
   data,
-});
-
-// const dummyPost = (data, name) => ({
-//   id: shortId.generate(),
-//   content: data,
-//   guestname: name,
-//   Comments: [],
-// });
-
-const dummyComment = (data, name) => ({
-  id: shortId.generate(),
-  content: data,
-  commentName: name,
 });
 
 const reducer = (state = initialState, action) =>

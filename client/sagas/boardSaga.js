@@ -1,9 +1,15 @@
 import axios from "axios";
-import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import { all, call, fork, put, takeLatest, throttle } from "redux-saga/effects";
 import {
   ADD_BOARD_FAILURE,
   ADD_BOARD_REQUEST,
   ADD_BOARD_SUCCESS,
+  LOAD_BOARDS_FAILURE,
+  LOAD_BOARDS_REQUEST,
+  LOAD_BOARDS_SUCCESS,
+  LOAD_BOARD_FAILURE,
+  LOAD_BOARD_REQUEST,
+  LOAD_BOARD_SUCCESS,
   UPLOAD_IMAGES_FAILURE,
   UPLOAD_IMAGES_REQUEST,
   UPLOAD_IMAGES_SUCCESS,
@@ -47,6 +53,43 @@ function* uploadImages(action) {
   }
 }
 
+function loadBoardAPI(data) {
+  return axios.get(`/board/list/${data}`);
+}
+function* loadBoard(action) {
+  try {
+    const result = yield call(loadBoardAPI, action.data);
+    yield put({
+      type: LOAD_BOARD_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_BOARD_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function loadBoardsAPI(lastId) {
+  return axios.get(`/boards?lastId=${lastId || 0}`);
+}
+
+function* loadBoards(action) {
+  try {
+    const result = yield call(loadBoardsAPI, action.lastId);
+    yield put({
+      type: LOAD_BOARDS_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: LOAD_BOARDS_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* watchAddBoard() {
   yield takeLatest(ADD_BOARD_REQUEST, addBoard);
 }
@@ -55,6 +98,19 @@ function* watchUploadImages() {
   yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadImages);
 }
 
+function* watchLoadBoard() {
+  yield takeLatest(LOAD_BOARD_REQUEST, loadBoard);
+}
+
+function* watchLoadBoards() {
+  yield throttle(5000, LOAD_BOARDS_REQUEST, loadBoards);
+}
+
 export default function* boardSaga() {
-  yield all([fork(watchAddBoard), fork(watchUploadImages)]);
+  yield all([
+    fork(watchAddBoard),
+    fork(watchUploadImages),
+    fork(watchLoadBoard),
+    fork(watchLoadBoards),
+  ]);
 }

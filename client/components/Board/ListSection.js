@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 const ListForm = styled.div`
   margin-top: 3%;
@@ -29,42 +29,26 @@ const ListEtcSpan = styled.span`
   font-size: 10pt;
   padding: 5px 15px;
 `;
-const HeadTitle = styled.div`
-  display: flex;
-`;
 
-const TextSpan = styled.span`
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
-`;
-const Atag = styled.a`
-  color: white;
-`;
-
-const ListSection = () => {
-  const { user } = useSelector((state) => state.user);
+const ListSection = ({ board }) => {
   return (
     <ListForm>
-      <HeadTitle>
-        <TextSpan>전체글</TextSpan>
-        {user ? (
-          <TextSpan>
-            <Link href="/blog/board/write">
-              <Atag>글작성</Atag>
-            </Link>
-          </TextSpan>
-        ) : (
-          <></>
-        )}
-      </HeadTitle>
       <ListSectionForm>
-        <ListTitleSpan>title</ListTitleSpan>
-        <ListContentSpan>content</ListContentSpan>
-        <ListEtcSpan>2021/04/26</ListEtcSpan>
+        <ListTitleSpan>{board.boardTitle}</ListTitleSpan>
+        <ListContentSpan>{board.boardContent}</ListContentSpan>
+        <ListEtcSpan>{board.createdAt}</ListEtcSpan>
       </ListSectionForm>
     </ListForm>
   );
 };
+
+// ListSection.propTypes = {
+//   ListSection: PropTypes.shape({
+//     id: PropTypes.number,
+//     User: PropTypes.object,
+//     content: PropTypes.string,
+//     createAt: PropTypes.string,
+//   }).isRequired,
+// };
 
 export default ListSection;
