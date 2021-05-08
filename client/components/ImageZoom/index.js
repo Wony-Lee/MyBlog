@@ -1,43 +1,35 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Slick from "react-slick";
+import Slider from "react-slick";
 import styled from "@emotion/styled";
 
 const CloseUpForm = styled.div`
   position: fixed;
   top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 5000;
   background-color: rgba(0, 0, 0, 1);
-  width: 75%;
-  height: 100%;
-  z-index: 1;
 `;
 
 const CloseTitle = styled.div`
   display: flex;
   flex-direction: column;
-
   jsutify-content: center;
   align-items: center;
 `;
 
 const CloseMain = styled.div`
-  width: 100%;
-
   border: 1px solid red;
+  height: calc(100% --44px);
 `;
 
 const ImageWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
   text-align: center;
   & img {
-    width: 50%;
-    height: 100%;
-    max-width: 1200px;
+    margin: 0 auto;
     max-height: 600px;
-    z-index: 50;
-    height: 30px;
   }
 `;
 
@@ -49,6 +41,7 @@ const CloseFoot = styled.div`
 
 const ImagesZoom = ({ images, onClose }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
   return (
     <>
       <CloseUpForm>
@@ -58,20 +51,20 @@ const ImagesZoom = ({ images, onClose }) => {
         </CloseTitle>
         <CloseMain>
           <div>
-            <Slick
+            <Slider
               initialSlide={0}
-              beforeafterChange={(slide) => setCurrentSlide(slide)}
+              afterChange={(item) => setCurrentSlide(item)}
               infinite
               arrows={true}
               slidesToShow={1}
               slidesToScroll={1}
             >
-              {images.map((v) => (
-                <ImageWrapper key={v.src}>
-                  <img src={`http://localhost:4444/${v.src}`} alt={v.src} />
+              {images.map((img) => (
+                <ImageWrapper key={img.src}>
+                  <img src={`http://localhost:4444/${img.src}`} alt={img.src} />
                 </ImageWrapper>
               ))}
-            </Slick>
+            </Slider>
             <CloseFoot>
               <div>
                 {currentSlide + 1}/{images.length}

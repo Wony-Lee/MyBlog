@@ -25,6 +25,10 @@ button{
 input {
   outline:none;
 }
+
+.slick-slider {
+  display:block;
+}
   `;
 
 const NavForm = styled.div`

@@ -20,8 +20,8 @@ const PostImages = ({ images }) => {
           role="presentation"
           src={`http://localhost:4444/${images[0].src}`}
           alt={images[0].src}
-          onClick={onZoom}
           style={{ width: "300px" }}
+          onClick={onZoom}
         />
         {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
       </>
@@ -44,6 +44,7 @@ const PostImages = ({ images }) => {
           onClick={onZoom}
           style={{ width: "300px", display: "inline-block" }}
         />
+        {showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
       </>
     );
   }
@@ -61,7 +62,7 @@ const PostImages = ({ images }) => {
           role="presentation"
           style={{
             display: "inline-block",
-            width: "50%",
+            width: "300px",
             textAlign: "center",
             verticalAlign: "middle",
           }}
