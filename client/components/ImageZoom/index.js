@@ -21,7 +21,6 @@ const CloseTitle = styled.div`
 `;
 
 const CloseMain = styled.div`
-  border: 1px solid red;
   height: calc(100% --44px);
 `;
 
@@ -29,7 +28,7 @@ const ImageWrapper = styled.div`
   text-align: center;
   & img {
     margin: 0 auto;
-    max-height: 600px;
+    max-height: 550px;
   }
 `;
 

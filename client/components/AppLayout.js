@@ -29,6 +29,9 @@ input {
 .slick-slider {
   display:block;
 }
+.slick-track {
+  display:flex;
+}
   `;
 
 const NavForm = styled.div`
