@@ -20,6 +20,6 @@ Components
 -- DailyItem   
 
 pages   
--blog
---daily
---port
+-blog   
+--daily   
+--port   
