@@ -18,6 +18,7 @@ const CloseTitle = styled.div`
   flex-direction: column;
   jsutify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 const CloseMain = styled.div`
@@ -27,7 +28,9 @@ const CloseMain = styled.div`
 const ImageWrapper = styled.div`
   text-align: center;
   & img {
+    width: 100%;
     margin: 0 auto;
+    max-width: 1200px;
     max-height: 550px;
   }
 `;
@@ -54,7 +57,7 @@ const ImagesZoom = ({ images, onClose }) => {
               initialSlide={0}
               afterChange={(item) => setCurrentSlide(item)}
               infinite
-              arrows={true}
+              arrows={false}
               slidesToShow={1}
               slidesToScroll={1}
             >

@@ -4,35 +4,35 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 
 const HeadTitle = styled.div`
-  display: flex;
-  color: white;
+    display: flex;
+    color: white;
 `;
 const TextSpan = styled.span`
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 `;
 const Atag = styled.a`
-  color: white;
+    color: white;
 `;
 
 const ListHeadTitle = () => {
-  const { user } = useSelector((state) => state.user);
-  return (
-    <>
-      <HeadTitle>
-        <TextSpan>전체글</TextSpan>
-        {user ? (
-          <TextSpan>
-            <Link href="/blog/board/write">
-              <Atag>글작성</Atag>
-            </Link>
-          </TextSpan>
-        ) : (
-          <></>
-        )}
-      </HeadTitle>
-    </>
-  );
+    const user = useSelector((state) => state.user.user?.admin);
+
+    return (
+        <>
+            <HeadTitle>
+                {user === 9 ? (
+                    <TextSpan>
+                        <Link href="/blog/board/write">
+                            <Atag>글작성 {console.log(user)}</Atag>
+                        </Link>
+                    </TextSpan>
+                ) : (
+                    <TextSpan>전체글{console.log(user)}</TextSpan>
+                )}
+            </HeadTitle>
+        </>
+    );
 };
 export default ListHeadTitle;
