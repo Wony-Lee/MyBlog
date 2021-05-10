@@ -19,7 +19,7 @@ const SignContainer = styled.div`
 `;
 
 const SignUpForm = styled.form`
-    width: 70%;
+    width: 100%;
     height: 500px;
     text-align: center;
 `;
@@ -28,6 +28,18 @@ const TextLabel = styled.label`
     color: white;
     margin: 0;
     display: block;
+`;
+
+const CheckDiv = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const CheckLabel = styled.label`
+    color: white;
+    @media (max-width: 480px) {
+        font-size: 10pt;
+    }
 `;
 
 const SignInput = styled.input`
@@ -154,23 +166,20 @@ const SignUp = () => {
                                 onChange={onChangeNickname}
                             />
                         </div>
-                        <div>
+                        <CheckDiv>
                             <SignInput
                                 type="checkbox"
                                 name="user-term"
                                 checked={term}
                                 onChange={onChangeTerm}
                             />
-                            <label
-                                htmlFor="user-term"
-                                style={{ color: "white" }}
-                            >
-                                가입하는 것에 대한 동의
-                            </label>
+                            <CheckLabel htmlFor="user-term">
+                                가입동의
+                            </CheckLabel>
                             {termError && (
                                 <ErrorDiv>약관에 동의해주셔야 합니다.</ErrorDiv>
                             )}
-                        </div>
+                        </CheckDiv>
                         <div>
                             <button
                                 type="submit"

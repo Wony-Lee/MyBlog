@@ -12,6 +12,9 @@ const LoginLayout = styled.div`
     width: 100%;
     background: white;
     height: 500px;
+    @media (max-width: 480px) {
+        height: 300px;
+    }
 `;
 const LoginForm = styled.form`
     margin-top: 5%;
@@ -19,6 +22,9 @@ const LoginForm = styled.form`
     display: flex;
     flex-direction: column;
     text-align: center;
+    @media (max-width: 480px) {
+        width: 100%;
+    }
 `;
 
 const LoginTableForm = styled.div`
@@ -28,9 +34,11 @@ const LoginTableForm = styled.div`
 `;
 
 const LoginTable = styled.table`
-    border: 1px solid black;
     width: 350px;
     height: 150px;
+    @media (max-width: 480px) {
+        width: 100%;
+    }
 `;
 
 const LoginComponents = () => {
