@@ -59,7 +59,7 @@ const NavRight = styled.div`
     align-items: center;
     width: 50%;
     @media (max-width: 480px) {
-        font-size: 10pt;
+        font-size: 8pt;
     }
 `;
 
@@ -83,6 +83,7 @@ const ContentLayout = styled.div`
     min-height: 830px;
     margin-bottom: 80px;
     @media (max-width: 480px) {
+        min-height: 480px;
     }
 `;
 

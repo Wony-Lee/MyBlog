@@ -86,6 +86,13 @@ const DateForm = styled.div`
     font-size: 10pt;
 `;
 
+const OpenComments = styled.div`
+    color: white;
+    @media (max-width: 480px) {
+        font-size: 10pt;
+    }
+`;
+
 moment.locale("ko");
 
 const PostCard = ({ post }) => {
@@ -120,12 +127,9 @@ const PostCard = ({ post }) => {
                         ) : (
                             <></>
                         )}
-                        <div
-                            onClick={onToggleComment}
-                            style={{ color: "white" }}
-                        >
+                        <OpenComments onClick={onToggleComment}>
                             댓글
-                        </div>
+                        </OpenComments>
                     </CardFooter>
                     {openComment && (
                         <div>

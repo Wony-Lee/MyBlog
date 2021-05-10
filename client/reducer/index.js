@@ -6,19 +6,18 @@ import guest from "./guest";
 import board from "./board";
 
 const rootReducer = (state, action) => {
-  switch (action.type) {
-    case HYDRATE:
-      console.log("HYDRATE", action);
-      return action.payload;
-    default: {
-      const combineReducer = combineReducers({
-        user,
-        guest,
-        board,
-      });
-      return combineReducer(state, action);
+    switch (action.type) {
+        case HYDRATE:
+            return action.payload;
+        default: {
+            const combineReducer = combineReducers({
+                user,
+                guest,
+                board,
+            });
+            return combineReducer(state, action);
+        }
     }
-  }
 };
 
 export default rootReducer;

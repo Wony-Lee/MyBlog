@@ -24,12 +24,12 @@ const ListHeadTitle = () => {
             <HeadTitle>
                 {user === 9 ? (
                     <TextSpan>
-                        <Link href="/blog/board/write">
-                            <Atag>글작성 {console.log(user)}</Atag>
+                        <Link href="/board/write">
+                            <Atag>글작성</Atag>
                         </Link>
                     </TextSpan>
                 ) : (
-                    <TextSpan>전체글{console.log(user)}</TextSpan>
+                    <TextSpan>전체글</TextSpan>
                 )}
             </HeadTitle>
         </>

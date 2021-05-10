@@ -98,7 +98,6 @@ const SignUp = () => {
                 type: SIGN_UP_REQUEST,
                 data: { email, password, nickname },
             });
-            console.log(email, password, passwordCheck, term);
         },
         [email, password, passwordCheck, term]
     );
