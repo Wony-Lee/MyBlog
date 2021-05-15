@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AppLayout from "../components/AppLayout";
 import ListHeadTitle from "../components/Board/ListHeadTitle";
 import ListSection from "../components/Board/ListSection";
-import { LOAD_BOARDS_REQUEST } from "../reducer/board";
+import { LOAD_BOARDS_REQUEST, LOAD_BOARD_REQUEST } from "../reducer/board";
 import axios from "axios";
 import wrapper from "../store/configureStore";
 import { END } from "redux-saga";
 import { LOAD_USER_INFO_REQUEST } from "../reducer/user";
+import SearchBar from "../components/Board/searchBar";
 
 const List = () => {
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const List = () => {
 
     return (
         <AppLayout>
+            <SearchBar />
             <ListHeadTitle />
             {boardPost.map((board) => (
                 <ListSection key={board.id} board={board} />

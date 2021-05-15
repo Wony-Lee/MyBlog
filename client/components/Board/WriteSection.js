@@ -1,6 +1,7 @@
-import React, { useCallback, useRef, useEffect } from "react";
+import React, { useCallback, useRef, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import useInput from "../../hooks/useInput";
+import Router from "next/router";
 import {
     ADD_BOARD_REQUEST,
     UPLOAD_IMAGES_REQUEST,
@@ -106,6 +107,7 @@ const WriteSection = () => {
         if (addBoardDone) {
             setBoardTitle("");
             setBoardContent("");
+            Router.replace("/blog");
         }
     }, [addBoardDone]);
 

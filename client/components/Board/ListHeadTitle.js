@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 
 const HeadTitle = styled.div`
     display: flex;
+    flex-direction: column;
+    align-items: center;
     color: white;
 `;
 const TextSpan = styled.span`
