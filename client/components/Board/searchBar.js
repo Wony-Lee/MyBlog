@@ -12,27 +12,20 @@ const SearchInput = styled.input`
     border: 1px solid black;
     width: 100%;
 `;
-const SearchBar = () => {
-    const [searchData, setSearchData] = useState([]);
+const SearchBar = (props) => {
     const [searchInput, setSearchInput] = useState("");
     const { boardPost } = useSelector((state) => state.board);
     const onKeyEvent = (e) => {
         if (e.key === "Enter") {
-            console.log(e.target.value);
+            console.log(e.currentTarget.value);
             setSearchInput("");
-            console.log(boardPost);
-
-            boardPost.map((searchItem) => {
-                if (searchItem.boardTitle === searchInput) {
-                    console.log(searchItem);
-                    console.log(searchInput);
-                    console.log("빙고");
-                }
-            });
         }
     };
     const searchHandler = (e) => {
-        setSearchInput(e.target.value);
+        setSearchInput(e.currentTarget.value);
+        props.searchData(e.currentTarget.value);
+        console.log(setSearchInput);
+        console.log("props==>", props.searchData);
     };
     return (
         <>
