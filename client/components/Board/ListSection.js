@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useSelector } from "react-redux";
 import PostImages from "./postImages";
+import BoardContents from "./BoardContents";
 import moment from "moment";
 
 const ListForm = styled.div`
@@ -33,6 +33,10 @@ const ListEtcSpan = styled.span`
     padding: 5px 15px;
 `;
 
+const HashTagForm = styled.div`
+    margin: 10px;
+`;
+
 moment.locale("ko");
 
 const ListSection = ({ board }) => {
@@ -47,6 +51,9 @@ const ListSection = ({ board }) => {
                 <ListEtcSpan>
                     {moment(board.createdAt).format("YYYY-MM-DD HH-mm")}
                 </ListEtcSpan>
+                <HashTagForm>
+                    <BoardContents boardData={board.boardContent} />
+                </HashTagForm>
             </ListSectionForm>
         </ListForm>
     );

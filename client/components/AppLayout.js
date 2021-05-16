@@ -53,6 +53,7 @@ const NavLeft = styled.div`
     justify-content: flex-start;
     width: 50%;
 `;
+
 const NavRight = styled.div`
     display: flex;
     justify-content: flex-end;

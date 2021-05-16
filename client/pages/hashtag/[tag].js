@@ -1,25 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import AppLayout from "../components/AppLayout";
-import ListSection from "../components/Board/ListSection";
-import ListHeadTitle from "../components/Board/ListHeadTitle";
-import { LOAD_BOARDS_REQUEST } from "../reducer/board";
-import axios from "axios";
-import wrapper from "../store/configureStore";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { END } from "redux-saga";
-import { LOAD_USER_INFO_REQUEST } from "../reducer/user";
 
-const List = () => {
+import axios from "axios";
+import AppLayout from "../../components/AppLayout";
+import ListHeadTitle from "../../components/Board/ListHeadTitle";
+import ListSection from "../../components/Board/ListSection";
+
+import wrapper from "../../store/configureStore";
+import { LOAD_HASHTAG_BOARDS_REQUEST } from "../../reducer/board";
+
+const Hashtag = () => {
     const dispatch = useDispatch();
-    // const [searchInput, setSearchInput] = useState("");
+    const router = useRouter();
+    const { tag } = router.query;
     const { boardPost, hasMoreBoards, loadBoardsLoading } = useSelector(
         (state) => state.board
     );
-
-    // const updateSearch = (newSearchData) => {
-    //     setSearchInput(newSearchData);
-    // };
-
     useEffect(() => {
         function onScroll() {
             if (
@@ -27,10 +25,12 @@ const List = () => {
                 document.documentElement.scrollHeight - 300
             ) {
                 if (hasMoreBoards && !loadBoardsLoading) {
-                    const lastId = boardPost[boardPost.length - 1]?.id;
                     dispatch({
-                        type: LOAD_BOARDS_REQUEST,
-                        lastId,
+                        type: LOAD_HASHTAG_BOARDS_REQUEST,
+                        lastId:
+                            boardPost[boardPost.length - 1] &&
+                            boardPost[boardPost.length - 1].id,
+                        data: tag,
                     });
                 }
             }
@@ -39,7 +39,7 @@ const List = () => {
         return () => {
             window.removeEventListener("scroll", onScroll);
         };
-    }, [hasMoreBoards, loadBoardsLoading, boardPost]);
+    }, [boardPost.length, hasMoreBoards, tag, loadBoardsLoading]);
 
     return (
         <AppLayout>
@@ -59,14 +59,12 @@ export const getServerSideProps = wrapper.getServerSideProps(
             axios.defaults.headers.Cookie = cookie;
         }
         context.store.dispatch({
-            type: LOAD_USER_INFO_REQUEST,
-        });
-        context.store.dispatch({
-            type: LOAD_BOARDS_REQUEST,
+            type: LOAD_HASHTAG_BOARDS_REQUEST,
+            data: context.params.tag,
         });
         context.store.dispatch(END);
         await context.store.sagaTask.toPromise();
     }
 );
 
-export default List;
+export default Hashtag;

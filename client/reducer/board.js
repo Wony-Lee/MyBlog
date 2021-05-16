@@ -43,6 +43,10 @@ export const LOAD_BOARD_REQUEST = "LOAD_BOARD_REQUEST";
 export const LOAD_BOARD_SUCCESS = "LOAD_BOARD_SUCCESS";
 export const LOAD_BOARD_FAILURE = "LOAD_BOARD_FAILURE";
 
+export const LOAD_HASHTAG_BOARDS_REQUEST = "LOAD_HASHTAG_BOARDS_REQUEST";
+export const LOAD_HASHTAG_BOARDS_SUCCESS = "LOAD_HASHTAG_BOARDS_SUCCESS";
+export const LOAD_HASHTAG_BOARDS_FAILURE = "LOAD_HASHTAG_BOARDS_FAILURE";
+
 export const LOAD_BOARDS_REQUEST = "LOAD_BOARDS_REQUEST";
 export const LOAD_BOARDS_SUCCESS = "LOAD_BOARDS_SUCCESS";
 export const LOAD_BOARDS_FAILURE = "LOAD_BOARDS_FAILURE";
@@ -93,18 +97,22 @@ const reducer = (state = initialState, action) =>
                 draft.loadBoardLoading = false;
                 draft.loadBoardError = action.error;
                 break;
-
+            case LOAD_HASHTAG_BOARDS_REQUEST:
             case LOAD_BOARDS_REQUEST:
                 draft.loadBoardsLoading = true;
                 draft.loadBoardsDone = false;
                 draft.loadBoardsError = null;
                 break;
+
+            case LOAD_HASHTAG_BOARDS_SUCCESS:
             case LOAD_BOARDS_SUCCESS:
                 draft.loadBoardsLoading = false;
                 draft.loadBoardsDone = true;
                 draft.boardPost = draft.boardPost.concat(action.data);
                 draft.hasMoreBoards = action.data.length === 10;
                 break;
+
+            case LOAD_HASHTAG_BOARDS_FAILURE:
             case LOAD_BOARDS_FAILURE:
                 draft.loadBoardsLoading = false;
                 draft.loadBoardsError = action.error;

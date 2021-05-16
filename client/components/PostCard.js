@@ -119,6 +119,7 @@ const PostCard = ({ post }) => {
                         </DateForm>
                     </CardTitle>
                     <CardContent>{post.content}</CardContent>
+
                     <CardFooter>
                         {user === 9 ? (
                             <>
