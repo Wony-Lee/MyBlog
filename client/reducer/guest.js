@@ -1,4 +1,4 @@
-import produce from "immer";
+import Produce from "../util/produce";
 
 export const initialState = {
     guestPost: [],
@@ -50,7 +50,7 @@ export const addComment = (data) => ({
 });
 
 const reducer = (state = initialState, action) =>
-    produce(state, (draft) => {
+    Produce(state, (draft) => {
         switch (action.type) {
             case ADD_POST_REQUEST:
                 draft.addPostLoading = true;

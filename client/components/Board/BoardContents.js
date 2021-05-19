@@ -1,11 +1,22 @@
 import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+
+const HashTagContainer = styled.div`
+    & a {
+        color: white;
+        text-decoration: none;
+    }
+    & a:hover {
+        color: pink;
+    }
+`;
 
 const BoardContent = ({ boardData }) => {
     return (
         <>
-            <div>
+            <HashTagContainer>
                 {boardData.split(/(#[^\s#]+)/g).map((v, i) => {
                     if (v.match(/(#[^\s#]+)/)) {
                         return (
@@ -16,7 +27,7 @@ const BoardContent = ({ boardData }) => {
                     }
                     return v;
                 })}
-            </div>
+            </HashTagContainer>
         </>
     );
 };

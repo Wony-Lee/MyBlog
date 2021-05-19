@@ -1,4 +1,4 @@
-import produce from "immer";
+import Produce from "../util/produce";
 
 export const initialState = {
     boardPost: [],
@@ -63,7 +63,7 @@ export const addBoard = (data) => ({
 });
 
 const reducer = (state = initialState, action) =>
-    produce(state, (draft) => {
+    Produce(state, (draft) => {
         switch (action.type) {
             case ADD_BOARD_REQUEST:
                 draft.addBoardLoding = true;

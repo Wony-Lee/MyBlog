@@ -19,13 +19,6 @@ const FooterSection = styled.div`
         color: red;
     }
 `;
-const Atag = styled.a`
-    color: white;
-    padding-bottom: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-`;
 
 const Footer = () => {
     return (

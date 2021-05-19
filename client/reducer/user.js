@@ -1,4 +1,4 @@
-import produce from "immer";
+import Produce from "../util/produce";
 
 export const initialState = {
     logInLoading: false /* 로그인 로딩 */,
@@ -53,7 +53,7 @@ export const logoutRequestAction = () => {
 };
 
 const reducer = (state = initialState, action) =>
-    produce(state, (draft) => {
+    Produce(state, (draft) => {
         switch (action.type) {
             case LOG_IN_REQUEST:
                 draft.logInLoading = true;

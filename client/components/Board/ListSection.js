@@ -23,11 +23,6 @@ const ListTitleSpan = styled.span`
 
 const PhotoZone = styled.div``;
 
-const ListContentSpan = styled.span`
-    font-size: 15pt;
-    padding: 15px;
-`;
-
 const ListEtcSpan = styled.span`
     font-size: 10pt;
     padding: 5px 15px;
@@ -35,6 +30,10 @@ const ListEtcSpan = styled.span`
 
 const HashTagForm = styled.div`
     margin: 10px;
+    font-size: 15pt;
+    @media (max-width: 480px) {
+        font-size: 10pt;
+    }
 `;
 
 moment.locale("ko");
@@ -47,13 +46,12 @@ const ListSection = ({ board }) => {
                 <PhotoZone>
                     {board.Images[0] && <PostImages images={board.Images} />}
                 </PhotoZone>
-                <ListContentSpan>{board.boardContent}</ListContentSpan>
-                <ListEtcSpan>
-                    {moment(board.createdAt).format("YYYY-MM-DD HH-mm")}
-                </ListEtcSpan>
                 <HashTagForm>
                     <BoardContents boardData={board.boardContent} />
                 </HashTagForm>
+                <ListEtcSpan>
+                    {moment(board.createdAt).format("YYYY-MM-DD HH-mm")}
+                </ListEtcSpan>
             </ListSectionForm>
         </ListForm>
     );
