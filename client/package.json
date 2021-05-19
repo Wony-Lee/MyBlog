@@ -17,6 +17,7 @@
         "next": "^10.0.6",
         "next-redux-saga": "^4.1.2",
         "next-redux-wrapper": "^6.0.2",
+        "pm2": "^4.5.6",
         "prop-types": "^15.7.2",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
@@ -31,7 +32,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "cross-env NODE_ENV=production next -p 3333",
+        "start": "cross-env NODE_ENV=production next -p 80",
         "build": "cross-env ANALYZE=true NODE_ENV=productin next build"
     },
     "keywords": [],
