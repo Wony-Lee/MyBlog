@@ -8,6 +8,7 @@ import {
     REMOVE_IMAGE,
 } from "../../reducer/board";
 import { useDispatch, useSelector } from "react-redux";
+import { baseURL } from "../../config/config";
 
 const WriteForm = styled.form`
     width: 100%;
@@ -186,7 +187,7 @@ const WriteSection = () => {
                                     style={{ display: "inline-block" }}
                                 >
                                     <img
-                                        src={`http://localhost:4444/${v}`}
+                                        src={`${baseURL}/${v}`}
                                         style={{ width: "200px" }}
                                         alt={v}
                                     />

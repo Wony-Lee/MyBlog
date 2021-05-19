@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import ImagesZoom from "../ImageZoom";
+import { baseURL } from "../../config/config";
 
 const PostImages = ({ images }) => {
     const [showImagesZoom, setShowImagesZoom] = useState(false);
@@ -18,7 +19,7 @@ const PostImages = ({ images }) => {
             <>
                 <img
                     role="presentation"
-                    src={`http://localhost:4444/${images[0].src}`}
+                    src={`${baseURL}/${images[0].src}`}
                     alt={images[0].src}
                     style={{ width: "220px", margin: "5px" }}
                     onClick={onZoom}
@@ -34,7 +35,7 @@ const PostImages = ({ images }) => {
             <>
                 <img
                     role="presentation"
-                    src={`http://localhost:4444/${images[0].src}`}
+                    src={`${baseURL}/${images[0].src}`}
                     alt={images[0].src}
                     onClick={onZoom}
                     style={{
@@ -45,7 +46,7 @@ const PostImages = ({ images }) => {
                 />
                 <img
                     role="presentation"
-                    src={`http://localhost:4444/${images[1].src}`}
+                    src={`${baseURL}/${images[1].src}`}
                     alt={images[1].src}
                     onClick={onZoom}
                     style={{
@@ -65,7 +66,7 @@ const PostImages = ({ images }) => {
             <div>
                 <img
                     role="presentation"
-                    src={`http://localhost:4444/${images[0].src}`}
+                    src={`${baseURL}/${images[0].src}`}
                     alt={images[0].src}
                     onClick={onZoom}
                     style={{ width: "220px", margin: "5px" }}
